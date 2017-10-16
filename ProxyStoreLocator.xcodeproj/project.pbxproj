@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77082E71FBE5ECC9266AC227 /* Pods_ProxyStoreLocator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 949E6143D2CB34135C2F825A /* Pods_ProxyStoreLocator.framework */; };
+		B802BC341F94BD6B00280B36 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B802BC331F94BD6B00280B36 /* GoogleService-Info.plist */; };
 		B8C6B1CC1F8EAC2E001127FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C6B1CB1F8EAC2E001127FD /* AppDelegate.swift */; };
 		B8C6B1CE1F8EAC2E001127FD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C6B1CD1F8EAC2E001127FD /* ViewController.swift */; };
 		B8C6B1D11F8EAC2E001127FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8C6B1CF1F8EAC2E001127FD /* Main.storyboard */; };
@@ -15,6 +17,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B14A306CC61E37374BE934B /* Pods-ProxyStoreLocator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProxyStoreLocator.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProxyStoreLocator/Pods-ProxyStoreLocator.release.xcconfig"; sourceTree = "<group>"; };
+		57795F52188189AFA4CCBF72 /* Pods-ProxyStoreLocator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProxyStoreLocator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProxyStoreLocator/Pods-ProxyStoreLocator.debug.xcconfig"; sourceTree = "<group>"; };
+		949E6143D2CB34135C2F825A /* Pods_ProxyStoreLocator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProxyStoreLocator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B802BC331F94BD6B00280B36 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B8C6B1C81F8EAC2E001127FD /* ProxyStoreLocator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProxyStoreLocator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8C6B1CB1F8EAC2E001127FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B8C6B1CD1F8EAC2E001127FD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -29,17 +35,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77082E71FBE5ECC9266AC227 /* Pods_ProxyStoreLocator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		69EAA5E869A5BDCFDD5C53A6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				949E6143D2CB34135C2F825A /* Pods_ProxyStoreLocator.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		B8C6B1BF1F8EAC2E001127FD = {
 			isa = PBXGroup;
 			children = (
 				B8C6B1CA1F8EAC2E001127FD /* ProxyStoreLocator */,
 				B8C6B1C91F8EAC2E001127FD /* Products */,
+				BC1B84AD3CBE873677BD1259 /* Pods */,
+				69EAA5E869A5BDCFDD5C53A6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,6 +71,7 @@
 		B8C6B1CA1F8EAC2E001127FD /* ProxyStoreLocator */ = {
 			isa = PBXGroup;
 			children = (
+				B802BC331F94BD6B00280B36 /* GoogleService-Info.plist */,
 				B8C6B1CB1F8EAC2E001127FD /* AppDelegate.swift */,
 				B8C6B1CD1F8EAC2E001127FD /* ViewController.swift */,
 				B8C6B1CF1F8EAC2E001127FD /* Main.storyboard */,
@@ -64,6 +82,15 @@
 			path = ProxyStoreLocator;
 			sourceTree = "<group>";
 		};
+		BC1B84AD3CBE873677BD1259 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				57795F52188189AFA4CCBF72 /* Pods-ProxyStoreLocator.debug.xcconfig */,
+				4B14A306CC61E37374BE934B /* Pods-ProxyStoreLocator.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +98,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B8C6B1DA1F8EAC2E001127FD /* Build configuration list for PBXNativeTarget "ProxyStoreLocator" */;
 			buildPhases = (
+				FEE3B18FB7BD422AE55D6340 /* [CP] Check Pods Manifest.lock */,
 				B8C6B1C41F8EAC2E001127FD /* Sources */,
 				B8C6B1C51F8EAC2E001127FD /* Frameworks */,
 				B8C6B1C61F8EAC2E001127FD /* Resources */,
+				609862D75BDE4790F14E60E9 /* [CP] Embed Pods Frameworks */,
+				5C8CAD9F8AEC7C387C55A5D0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -124,12 +154,69 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8C6B1D61F8EAC2E001127FD /* LaunchScreen.storyboard in Resources */,
+				B802BC341F94BD6B00280B36 /* GoogleService-Info.plist in Resources */,
 				B8C6B1D31F8EAC2E001127FD /* Assets.xcassets in Resources */,
 				B8C6B1D11F8EAC2E001127FD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5C8CAD9F8AEC7C387C55A5D0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ProxyStoreLocator/Pods-ProxyStoreLocator-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		609862D75BDE4790F14E60E9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ProxyStoreLocator/Pods-ProxyStoreLocator-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ProxyStoreLocator/Pods-ProxyStoreLocator-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FEE3B18FB7BD422AE55D6340 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ProxyStoreLocator-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B8C6B1C41F8EAC2E001127FD /* Sources */ = {
@@ -272,6 +359,7 @@
 		};
 		B8C6B1DB1F8EAC2E001127FD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 57795F52188189AFA4CCBF72 /* Pods-ProxyStoreLocator.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -287,6 +375,7 @@
 		};
 		B8C6B1DC1F8EAC2E001127FD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4B14A306CC61E37374BE934B /* Pods-ProxyStoreLocator.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
