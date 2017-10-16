@@ -9,8 +9,11 @@
 /* Begin PBXBuildFile section */
 		77082E71FBE5ECC9266AC227 /* Pods_ProxyStoreLocator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 949E6143D2CB34135C2F825A /* Pods_ProxyStoreLocator.framework */; };
 		B802BC341F94BD6B00280B36 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B802BC331F94BD6B00280B36 /* GoogleService-Info.plist */; };
+		B80D823A1F95504F0091035B /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80D82391F95504F0091035B /* MenuViewController.swift */; };
+		B80D823C1F95558C0091035B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80D823B1F95558B0091035B /* LoginViewController.swift */; };
+		B80D823E1F9556BF0091035B /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80D823D1F9556BF0091035B /* RegistrationViewController.swift */; };
 		B8C6B1CC1F8EAC2E001127FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C6B1CB1F8EAC2E001127FD /* AppDelegate.swift */; };
-		B8C6B1CE1F8EAC2E001127FD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C6B1CD1F8EAC2E001127FD /* ViewController.swift */; };
+		B8C6B1CE1F8EAC2E001127FD /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C6B1CD1F8EAC2E001127FD /* MapViewController.swift */; };
 		B8C6B1D11F8EAC2E001127FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8C6B1CF1F8EAC2E001127FD /* Main.storyboard */; };
 		B8C6B1D31F8EAC2E001127FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8C6B1D21F8EAC2E001127FD /* Assets.xcassets */; };
 		B8C6B1D61F8EAC2E001127FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8C6B1D41F8EAC2E001127FD /* LaunchScreen.storyboard */; };
@@ -21,9 +24,12 @@
 		57795F52188189AFA4CCBF72 /* Pods-ProxyStoreLocator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProxyStoreLocator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProxyStoreLocator/Pods-ProxyStoreLocator.debug.xcconfig"; sourceTree = "<group>"; };
 		949E6143D2CB34135C2F825A /* Pods_ProxyStoreLocator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProxyStoreLocator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B802BC331F94BD6B00280B36 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B80D82391F95504F0091035B /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		B80D823B1F95558B0091035B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B80D823D1F9556BF0091035B /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		B8C6B1C81F8EAC2E001127FD /* ProxyStoreLocator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProxyStoreLocator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8C6B1CB1F8EAC2E001127FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B8C6B1CD1F8EAC2E001127FD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B8C6B1CD1F8EAC2E001127FD /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B8C6B1D01F8EAC2E001127FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B8C6B1D21F8EAC2E001127FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B8C6B1D51F8EAC2E001127FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -73,11 +79,14 @@
 			children = (
 				B802BC331F94BD6B00280B36 /* GoogleService-Info.plist */,
 				B8C6B1CB1F8EAC2E001127FD /* AppDelegate.swift */,
-				B8C6B1CD1F8EAC2E001127FD /* ViewController.swift */,
+				B8C6B1CD1F8EAC2E001127FD /* MapViewController.swift */,
 				B8C6B1CF1F8EAC2E001127FD /* Main.storyboard */,
 				B8C6B1D21F8EAC2E001127FD /* Assets.xcassets */,
 				B8C6B1D41F8EAC2E001127FD /* LaunchScreen.storyboard */,
 				B8C6B1D71F8EAC2E001127FD /* Info.plist */,
+				B80D82391F95504F0091035B /* MenuViewController.swift */,
+				B80D823B1F95558B0091035B /* LoginViewController.swift */,
+				B80D823D1F9556BF0091035B /* RegistrationViewController.swift */,
 			);
 			path = ProxyStoreLocator;
 			sourceTree = "<group>";
@@ -223,8 +232,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8C6B1CE1F8EAC2E001127FD /* ViewController.swift in Sources */,
+				B80D823C1F95558C0091035B /* LoginViewController.swift in Sources */,
+				B8C6B1CE1F8EAC2E001127FD /* MapViewController.swift in Sources */,
+				B80D823A1F95504F0091035B /* MenuViewController.swift in Sources */,
 				B8C6B1CC1F8EAC2E001127FD /* AppDelegate.swift in Sources */,
+				B80D823E1F9556BF0091035B /* RegistrationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

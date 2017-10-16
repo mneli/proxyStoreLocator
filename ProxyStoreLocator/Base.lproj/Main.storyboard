@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CBM-JJ-COY">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ProxyStoreLocator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mapViewController" id="BYZ-38-t0r" customClass="MapViewController" customModule="ProxyStoreLocator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -30,7 +30,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" backgroundImage="menu-icon"/>
                                 <connections>
-                                    <segue destination="yHS-Sp-3g0" kind="presentation" modalPresentationStyle="overFullScreen" id="PM0-E4-Onq"/>
+                                    <segue destination="yHS-Sp-3g0" kind="presentation" modalPresentationStyle="overCurrentContext" modalTransitionStyle="coverVertical" id="PM0-E4-Onq"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -55,10 +55,10 @@
             </objects>
             <point key="canvasLocation" x="274" y="18"/>
         </scene>
-        <!--View Controller-->
+        <!--Menu View Controller-->
         <scene sceneID="8ML-3S-AjG">
             <objects>
-                <viewController id="yHS-Sp-3g0" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="menuViewController" id="yHS-Sp-3g0" customClass="MenuViewController" customModule="ProxyStoreLocator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pAE-Gp-MW2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -133,6 +133,7 @@
                                             </constraints>
                                         </stackView>
                                     </subviews>
+                                    <gestureRecognizers/>
                                     <constraints>
                                         <constraint firstItem="Ugl-Vn-Yiw" firstAttribute="top" secondItem="Zl2-jw-yO8" secondAttribute="topMargin" id="0ca-fh-Wh9"/>
                                         <constraint firstItem="Qbd-Dc-dYH" firstAttribute="top" secondItem="Zl2-jw-yO8" secondAttribute="topMargin" id="KBC-65-nGb"/>
@@ -140,8 +141,11 @@
                                         <constraint firstItem="Ugl-Vn-Yiw" firstAttribute="leading" secondItem="Qbd-Dc-dYH" secondAttribute="trailing" constant="20" id="mxj-qQ-ghn"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Ugl-Vn-Yiw" secondAttribute="trailing" id="nH8-xm-0Qp"/>
                                     </constraints>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="3Vj-tA-jdj" appends="YES" id="Vih-m0-XJm"/>
+                                    </connections>
                                 </view>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <blurEffect style="light"/>
                             </visualEffectView>
                         </subviews>
@@ -157,8 +161,86 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wrg-dS-z6U" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="eRk-A2-bSm" userLabel="Exit" sceneMemberID="exit"/>
+                <swipeGestureRecognizer direction="down" id="3Vj-tA-jdj">
+                    <connections>
+                        <segue destination="eRk-A2-bSm" kind="unwind" unwindAction="unWindToMapWithUnWindSegue:" id="hPE-bR-DND"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1030" y="18"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="t9i-e5-YHi">
+            <objects>
+                <viewController storyboardIdentifier="loginViewController" id="CBM-JJ-COY" customClass="LoginViewController" customModule="ProxyStoreLocator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pxH-ye-IdV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dde-1B-CbW">
+                                <rect key="frame" x="40" y="254" width="295" height="159"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="vEb-Cj-Mbg">
+                                        <rect key="frame" x="0.0" y="0.0" width="295" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES" textContentType="email"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dUB-zb-h2i">
+                                        <rect key="frame" x="0.0" y="40" width="295" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" smartDashesType="no" textContentType="password"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nGP-07-24D">
+                                        <rect key="frame" x="0.0" y="80" width="295" height="39"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <state key="normal" title="Login"/>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="eHf-yT-eEV">
+                                        <rect key="frame" x="0.0" y="129" width="295" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kjF-dX-dnu">
+                                                <rect key="frame" x="0.0" y="0.0" width="114.5" height="30"/>
+                                                <state key="normal" title="New user?"/>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sVg-DG-d1y">
+                                                <rect key="frame" x="114.5" y="0.0" width="180.5" height="30"/>
+                                                <state key="normal" title="Forgot password"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dde-1B-CbW" firstAttribute="centerY" secondItem="pxH-ye-IdV" secondAttribute="centerY" id="Fql-ci-P7B"/>
+                            <constraint firstItem="dde-1B-CbW" firstAttribute="leading" secondItem="dBO-kQ-lPH" secondAttribute="leading" constant="40" id="Jwa-ML-t6m"/>
+                            <constraint firstItem="dBO-kQ-lPH" firstAttribute="trailing" secondItem="dde-1B-CbW" secondAttribute="trailing" constant="40" id="YPT-6U-Pvv"/>
+                            <constraint firstItem="dde-1B-CbW" firstAttribute="centerX" secondItem="pxH-ye-IdV" secondAttribute="centerX" id="hcC-RJ-Mjo"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="dBO-kQ-lPH"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i79-tw-cAa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1830" y="17"/>
+        </scene>
+        <!--Registration View Controller-->
+        <scene sceneID="Qy3-Ay-gZk">
+            <objects>
+                <viewController storyboardIdentifier="registrationViewController" id="ucD-XJ-j1q" customClass="RegistrationViewController" customModule="ProxyStoreLocator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9p1-IB-myP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="cPx-3Z-PcC"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nhJ-07-Umb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2545" y="16"/>
         </scene>
     </scenes>
     <resources>
