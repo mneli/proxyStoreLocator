@@ -32,13 +32,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 	}
 	
 	func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-		guard status == .authorizedWhenInUse else {
+		if status == .denied {
 			let alert = UIAlertController(title: "Location permission not granted", message: "Please allow this app to get your location when in use for a better user experience under \nSettings > Privacy > Location Services", preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
 			self.present(alert, animated: true, completion: nil)
-			return
+		} else if status == .authorizedWhenInUse{
+			zoomToUserLocation()
+			mapView.showsUserLocation = true
 		}
-		mapView.showsUserLocation = true
 	}
 	
 	func zoomToUserLocation() {
