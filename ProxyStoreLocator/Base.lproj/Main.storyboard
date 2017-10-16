@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,11 +21,25 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="fk1-Ac-Ew7">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </mapView>
+                            <button opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XwC-Ao-Jbd">
+                                <rect key="frame" x="0.0" y="20" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="O5u-GC-UmR"/>
+                                    <constraint firstAttribute="height" constant="44" id="sFe-Gi-m46"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" backgroundImage="menu-icon"/>
+                                <connections>
+                                    <segue destination="yHS-Sp-3g0" kind="presentation" modalPresentationStyle="overFullScreen" id="PM0-E4-Onq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="XwC-Ao-Jbd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="18c-1c-Cmf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="fk1-Ac-Ew7" secondAttribute="bottom" id="Euc-QM-CdF"/>
                             <constraint firstItem="fk1-Ac-Ew7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="IrY-xk-R0u"/>
+                            <constraint firstItem="XwC-Ao-Jbd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dfa-OX-e76"/>
                             <constraint firstItem="fk1-Ac-Ew7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="fQx-oD-eh3"/>
                             <constraint firstItem="fk1-Ac-Ew7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="m7F-Wx-9ow"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fk1-Ac-Ew7" secondAttribute="trailing" id="p3U-Fs-AFi"/>
@@ -38,6 +53,121 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="274" y="18"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="8ML-3S-AjG">
+            <objects>
+                <viewController id="yHS-Sp-3g0" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pAE-Gp-MW2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mAg-Bk-Hdo">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Zl2-jw-yO8">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qbd-Dc-dYH">
+                                            <rect key="frame" x="8" y="8" width="44" height="44"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="44" id="bZQ-qv-Oh0"/>
+                                                <constraint firstAttribute="height" constant="44" id="fv9-ZM-bLd"/>
+                                            </constraints>
+                                            <state key="normal" backgroundImage="close-icon"/>
+                                            <connections>
+                                                <segue destination="eRk-A2-bSm" kind="unwind" unwindAction="unWindToMapWithUnWindSegue:" id="7dr-Yh-cOF"/>
+                                            </connections>
+                                        </button>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ugl-Vn-Yiw">
+                                            <rect key="frame" x="72" y="8" width="295" height="330"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Eu-J0-5hi">
+                                                    <rect key="frame" x="0.0" y="0.0" width="295" height="50"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" title="Map" image="map-icon">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UkV-CQ-HBT">
+                                                    <rect key="frame" x="0.0" y="70" width="295" height="50"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" title="Profile" image="profile-icon">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PFM-k8-hWo">
+                                                    <rect key="frame" x="0.0" y="140" width="295" height="50"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" title="Favorites" image="favorite-icon">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XQo-Bo-858">
+                                                    <rect key="frame" x="0.0" y="210" width="295" height="50"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" title="Add Shop" image="add-icon">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="73s-wZ-3Up">
+                                                    <rect key="frame" x="0.0" y="280" width="295" height="50"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" title="About" image="info-icon">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="XQo-Bo-858" firstAttribute="width" secondItem="Ugl-Vn-Yiw" secondAttribute="width" id="Mmh-sz-gh9"/>
+                                                <constraint firstItem="PFM-k8-hWo" firstAttribute="width" secondItem="Ugl-Vn-Yiw" secondAttribute="width" id="SXM-CB-Ddu"/>
+                                                <constraint firstItem="8Eu-J0-5hi" firstAttribute="width" secondItem="Ugl-Vn-Yiw" secondAttribute="width" id="YTK-2r-Clu"/>
+                                                <constraint firstItem="73s-wZ-3Up" firstAttribute="width" secondItem="Ugl-Vn-Yiw" secondAttribute="width" id="Yeo-Rf-AIk"/>
+                                                <constraint firstItem="UkV-CQ-HBT" firstAttribute="width" secondItem="Ugl-Vn-Yiw" secondAttribute="width" id="ch0-1e-Rjp"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Ugl-Vn-Yiw" firstAttribute="top" secondItem="Zl2-jw-yO8" secondAttribute="topMargin" id="0ca-fh-Wh9"/>
+                                        <constraint firstItem="Qbd-Dc-dYH" firstAttribute="top" secondItem="Zl2-jw-yO8" secondAttribute="topMargin" id="KBC-65-nGb"/>
+                                        <constraint firstItem="Qbd-Dc-dYH" firstAttribute="leading" secondItem="Zl2-jw-yO8" secondAttribute="leadingMargin" id="ZJx-lY-ZWb"/>
+                                        <constraint firstItem="Ugl-Vn-Yiw" firstAttribute="leading" secondItem="Qbd-Dc-dYH" secondAttribute="trailing" constant="20" id="mxj-qQ-ghn"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Ugl-Vn-Yiw" secondAttribute="trailing" id="nH8-xm-0Qp"/>
+                                    </constraints>
+                                </view>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mAg-Bk-Hdo" firstAttribute="leading" secondItem="Y1b-59-kmO" secondAttribute="leading" id="54W-ym-IbI"/>
+                            <constraint firstItem="Y1b-59-kmO" firstAttribute="trailing" secondItem="mAg-Bk-Hdo" secondAttribute="trailing" id="Cf9-Fa-ank"/>
+                            <constraint firstItem="mAg-Bk-Hdo" firstAttribute="top" secondItem="Y1b-59-kmO" secondAttribute="top" id="Xeg-kp-ad7"/>
+                            <constraint firstItem="Y1b-59-kmO" firstAttribute="bottom" secondItem="mAg-Bk-Hdo" secondAttribute="bottom" id="g4x-C3-fc7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Y1b-59-kmO"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wrg-dS-z6U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="eRk-A2-bSm" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1030" y="18"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="add-icon" width="50" height="50"/>
+        <image name="close-icon" width="50" height="50"/>
+        <image name="favorite-icon" width="50" height="50"/>
+        <image name="info-icon" width="50" height="50"/>
+        <image name="map-icon" width="50" height="50"/>
+        <image name="menu-icon" width="50" height="50"/>
+        <image name="profile-icon" width="50" height="50"/>
+    </resources>
 </document>

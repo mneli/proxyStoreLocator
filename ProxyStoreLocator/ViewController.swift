@@ -18,6 +18,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
 	
 	@IBOutlet weak var mapView: MKMapView!
 	
+	@IBAction func unWindToMap(unWindSegue: UIStoryboardSegue) {
+		
+	}
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		locationManager.delegate = self
