@@ -19,7 +19,19 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
 	@IBOutlet weak var mapView: MKMapView!
 	
 	@IBAction func unWindToMap(unWindSegue: UIStoryboardSegue) {
-		
+		if unWindSegue.source is MenuViewController {
+			if let segue = unWindSegue as? UIStoryboardSegueWithCompletion, let senderVC = unWindSegue.source as? MenuViewController {
+				segue.completion = {
+					print(senderVC.choosenOption)
+					self.checkLoginAndPerformSegue(senderVC.choosenOption)
+				}
+				
+			}
+		}
+	}
+	
+	func checkLoginAndPerformSegue( _ : String ) {
+		performSegue(withIdentifier: "LoginSegue", sender: nil)
 	}
 	
 	override func viewDidLoad() {
