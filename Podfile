@@ -8,5 +8,6 @@ target 'ProxyStoreLocator' do
   # Pods for ProxyStoreLocator
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
+  pod 'Firebase/Database'
 
 end

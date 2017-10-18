@@ -12,6 +12,7 @@
 		B80D823A1F95504F0091035B /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80D82391F95504F0091035B /* MenuViewController.swift */; };
 		B80D823C1F95558C0091035B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80D823B1F95558B0091035B /* LoginViewController.swift */; };
 		B80D823E1F9556BF0091035B /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80D823D1F9556BF0091035B /* RegistrationViewController.swift */; };
+		B81210DB1F98012100B5B452 /* AddStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81210DA1F98012100B5B452 /* AddStoreViewController.swift */; };
 		B85399A41F975F5F0039DAC2 /* UIStoryboardSegueWithCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85399A31F975F5F0039DAC2 /* UIStoryboardSegueWithCompletion.swift */; };
 		B87F770D1F979EB3009777CF /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87F770C1F979EB3009777CF /* UserProfileViewController.swift */; };
 		B8C6B1CC1F8EAC2E001127FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C6B1CB1F8EAC2E001127FD /* AppDelegate.swift */; };
@@ -30,6 +31,7 @@
 		B80D82391F95504F0091035B /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		B80D823B1F95558B0091035B /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B80D823D1F9556BF0091035B /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		B81210DA1F98012100B5B452 /* AddStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStoreViewController.swift; sourceTree = "<group>"; };
 		B85399A31F975F5F0039DAC2 /* UIStoryboardSegueWithCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboardSegueWithCompletion.swift; sourceTree = "<group>"; };
 		B87F770C1F979EB3009777CF /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		B8C6B1C81F8EAC2E001127FD /* ProxyStoreLocator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProxyStoreLocator.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,6 +98,7 @@
 				B80D823D1F9556BF0091035B /* RegistrationViewController.swift */,
 				B8E2AB571F96A3DB00CDAD7B /* Constants.swift */,
 				B87F770C1F979EB3009777CF /* UserProfileViewController.swift */,
+				B81210DA1F98012100B5B452 /* AddStoreViewController.swift */,
 			);
 			path = ProxyStoreLocator;
 			sourceTree = "<group>";
@@ -205,12 +208,14 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-ProxyStoreLocator/Pods-ProxyStoreLocator-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,6 +254,7 @@
 				B85399A41F975F5F0039DAC2 /* UIStoryboardSegueWithCompletion.swift in Sources */,
 				B80D823A1F95504F0091035B /* MenuViewController.swift in Sources */,
 				B8C6B1CC1F8EAC2E001127FD /* AppDelegate.swift in Sources */,
+				B81210DB1F98012100B5B452 /* AddStoreViewController.swift in Sources */,
 				B80D823E1F9556BF0091035B /* RegistrationViewController.swift in Sources */,
 				B8E2AB581F96A3DB00CDAD7B /* Constants.swift in Sources */,
 			);
