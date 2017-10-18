@@ -86,7 +86,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="La2-h2-EIh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1610" y="1362"/>
+            <point key="canvasLocation" x="-1610" y="1348"/>
         </scene>
         <!--Add Store-->
         <scene sceneID="UAK-Wu-JpN">
@@ -110,7 +110,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mxt-2p-ytL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1527" y="528"/>
+            <point key="canvasLocation" x="-1610" y="528"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="l4q-1F-v3Z">
@@ -256,20 +256,24 @@
         <!--Profile-->
         <scene sceneID="11I-V0-jy3">
             <objects>
-                <viewController title="Profile" id="RfK-If-p7D" sceneMemberID="viewController">
+                <viewController title="Profile" id="RfK-If-p7D" customClass="UserProfileViewController" customModule="ProxyStoreLocator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3Jr-3j-wjn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rsD-EP-ZtU">
-                                <rect key="frame" x="141" y="290" width="97" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="op1-ft-cUu">
+                                <rect key="frame" x="157" y="318.5" width="60" height="30"/>
+                                <state key="normal" title="Sign Out"/>
+                                <connections>
+                                    <action selector="logoutButtonTapped" destination="RfK-If-p7D" eventType="touchUpInside" id="RO0-5H-M4k"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="op1-ft-cUu" firstAttribute="centerX" secondItem="3Jr-3j-wjn" secondAttribute="centerX" id="ENR-Nm-G9R"/>
+                            <constraint firstItem="op1-ft-cUu" firstAttribute="centerY" secondItem="3Jr-3j-wjn" secondAttribute="centerY" id="Eh2-vW-kxl"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Rt2-Mo-b57"/>
                     </view>
                 </viewController>
@@ -304,6 +308,9 @@
                                         <rect key="frame" x="0.0" y="80" width="295" height="39"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="Login"/>
+                                        <connections>
+                                            <action selector="loginButtonTapped" destination="CBM-JJ-COY" eventType="touchUpInside" id="n8o-D8-KQf"/>
+                                        </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="eHf-yT-eEV">
                                         <rect key="frame" x="0.0" y="129" width="295" height="30"/>
@@ -333,6 +340,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dBO-kQ-lPH"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTextFiled" destination="vEb-Cj-Mbg" id="WC0-0J-CoW"/>
+                        <outlet property="passwordTextField" destination="dUB-zb-h2i" id="GZV-N5-rZI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i79-tw-cAa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
