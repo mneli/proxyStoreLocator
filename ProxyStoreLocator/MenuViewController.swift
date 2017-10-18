@@ -23,10 +23,6 @@ class MenuViewController: UIViewController {
 	@IBAction func menuOptionTapped(_ sender: UIButton) {
 		self.choosenOption = sender.title(for: .normal)!
 		self.performSegue(withIdentifier: "unwindToMap", sender: choosenOption)
-//		self.dismiss(animated: true) {
-//			print("menu dismissed")
-//			
-//		}
 	}
 	
 	override func viewDidLoad() {

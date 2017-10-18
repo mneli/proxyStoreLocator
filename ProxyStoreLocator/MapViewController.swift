@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import FirebaseAuth
 
 class MapViewController: UIViewController, CLLocationManagerDelegate {
 
@@ -22,16 +23,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
 		if unWindSegue.source is MenuViewController {
 			if let segue = unWindSegue as? UIStoryboardSegueWithCompletion, let senderVC = unWindSegue.source as? MenuViewController {
 				segue.completion = {
-					print(senderVC.choosenOption)
-					self.checkLoginAndPerformSegue(senderVC.choosenOption)
+					self.performSegueWithMenuChoice(senderVC.choosenOption)
 				}
-				
 			}
 		}
-	}
-	
-	func checkLoginAndPerformSegue( _ : String ) {
-		performSegue(withIdentifier: "LoginSegue", sender: nil)
 	}
 	
 	override func viewDidLoad() {
@@ -66,6 +61,41 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
 			viewRegion = MKCoordinateRegionMakeWithDistance(defaultLocation, zoomDistance, zoomDistance)
 		}
 		mapView.setRegion(viewRegion, animated: true)
+	}
+	
+	
+	func performSegueWithMenuChoice( _ choice : String ) {
+		//TODO : refactor checklogin cases
+		switch choice {
+		case Constants.MenuItems.profile:
+			if isUserLoggedIn() {
+				performSegue(withIdentifier: "ProfileSegue", sender: nil)
+			} else {
+				performSegue(withIdentifier: "LoginSegue", sender: nil)
+			}
+		case Constants.MenuItems.favorites:
+			if isUserLoggedIn() {
+				performSegue(withIdentifier: "FavoritesSegue", sender: nil)
+			} else {
+				performSegue(withIdentifier: "LoginSegue", sender: nil)
+			}
+		case Constants.MenuItems.addStore:
+			if isUserLoggedIn() {
+				performSegue(withIdentifier: "AddStoreSegue", sender: nil)
+			} else {
+				performSegue(withIdentifier: "LoginSegue", sender: nil)
+			}
+		case Constants.MenuItems.about:
+			//TODO : send to github page
+			fallthrough
+		default:
+			return
+		}
+		
+	}
+	
+	func isUserLoggedIn() -> Bool {
+		return (Auth.auth().currentUser == nil) ? false : true
 	}
 
 
