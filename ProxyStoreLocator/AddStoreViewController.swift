@@ -17,9 +17,9 @@ class AddStoreViewController: UIViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-		dbRef = Database.database().reference()
+		//dbRef = Database.database().reference()
 		//setupFirebaseDatabaseListener()
-		addStoreToFirebaseDatabase()
+		//addStoreToFirebaseDatabase()
     }
 
     override func didReceiveMemoryWarning() {
