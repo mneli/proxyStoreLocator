@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DE6AD1341A41046A6D03B4D5974432A5"
+               BlueprintIdentifier = "5FC9546767C01D6AD4036A569E967A5B"
                BuildableName = "Pods_ProxyStoreLocator.framework"
                BlueprintName = "Pods-ProxyStoreLocator"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -47,7 +47,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DE6AD1341A41046A6D03B4D5974432A5"
+            BlueprintIdentifier = "5FC9546767C01D6AD4036A569E967A5B"
             BuildableName = "Pods_ProxyStoreLocator.framework"
             BlueprintName = "Pods-ProxyStoreLocator"
             ReferencedContainer = "container:Pods.xcodeproj">

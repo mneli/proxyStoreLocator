@@ -16,4 +16,14 @@ struct Constants {
 		static let addStore = "Add Store"
 		static let about = "About"
 	}
+	struct StoreKeys {
+		static let name = "Name"
+		static let street = "Street"
+		static let city = "City"
+		static let timetable = "Timetable"
+		static let timetableOpen = "Open"
+		static let timetableClose = "Close"
+		static let telephone = "Telephone"
+		static let website = "Website"
+	}
 }

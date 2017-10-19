@@ -88,16 +88,23 @@
             </objects>
             <point key="canvasLocation" x="-1610" y="1348"/>
         </scene>
-        <!--Add Store-->
+        <!--Title-->
         <scene sceneID="UAK-Wu-JpN">
             <objects>
-                <viewController title="Add Store" id="1Cy-Yr-4Op" customClass="AddStoreViewController" customModule="ProxyStoreLocator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="1Cy-Yr-4Op" customClass="AddStoreViewController" customModule="ProxyStoreLocator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VWi-Lm-Qoa">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="jad-yK-v0e"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="p8O-GE-civ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="RQI-iB-y1F">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="1Cy-Yr-4Op" id="0bm-am-9iP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mxt-2p-ytL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
