@@ -88,7 +88,7 @@
             </objects>
             <point key="canvasLocation" x="-1610" y="1348"/>
         </scene>
-        <!--Title-->
+        <!--Add Store-->
         <scene sceneID="UAK-Wu-JpN">
             <objects>
                 <viewController id="1Cy-Yr-4Op" customClass="AddStoreViewController" customModule="ProxyStoreLocator" customModuleProvider="target" sceneMemberID="viewController">
@@ -98,7 +98,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="jad-yK-v0e"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="p8O-GE-civ">
+                    <navigationItem key="navigationItem" title="Add Store" id="p8O-GE-civ">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="RQI-iB-y1F">
                             <connections>
                                 <action selector="saveButtonTapped:" destination="1Cy-Yr-4Op" id="0bm-am-9iP"/>
@@ -347,25 +347,23 @@
             </objects>
             <point key="canvasLocation" x="-1609" y="-1073"/>
         </scene>
-        <!--Register-->
+        <!--Sign Up-->
         <scene sceneID="Qy3-Ay-gZk">
             <objects>
-                <viewController storyboardIdentifier="registrationViewController" title="Register" id="ucD-XJ-j1q" customClass="RegistrationViewController" customModule="ProxyStoreLocator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="registrationViewController" id="ucD-XJ-j1q" customClass="RegistrationViewController" customModule="ProxyStoreLocator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9p1-IB-myP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Register" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1B5-GI-knD">
-                                <rect key="frame" x="132" y="355" width="97" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="cPx-3Z-PcC"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Sign Up" id="X6H-Vu-5oa">
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="tnr-Lw-Bby">
+                            <connections>
+                                <action selector="doneButtonTapped:" destination="ucD-XJ-j1q" id="MPT-hk-9rj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nhJ-07-Umb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -40,37 +40,37 @@ class AddStoreViewController: FormViewController {
 		form
 		+++ Section("Store details")
 			<<< NameRow() { row in
-				row.placeholder = Constants.StoreKeys.name
-				row.tag = Constants.StoreKeys.name
+				row.placeholder = Constants.StoreKey.name
+				row.tag = Constants.StoreKey.name
 			}
 			<<< TextRow() { row in
-				row.placeholder = Constants.StoreKeys.street
-				row.tag = Constants.StoreKeys.street
+				row.placeholder = Constants.StoreKey.street
+				row.tag = Constants.StoreKey.street
 			}
 			<<< TextRow() { row in
-				row.placeholder = Constants.StoreKeys.city
-				row.tag = Constants.StoreKeys.city
+				row.placeholder = Constants.StoreKey.city
+				row.tag = Constants.StoreKey.city
 			}
 			
-		+++ Section(Constants.StoreKeys.timetable)
+		+++ Section(Constants.StoreKey.timetable)
 			<<< TimeRow() { row in
-				row.title = Constants.StoreKeys.timetableOpen
-				row.tag = Constants.StoreKeys.timetableOpen
+				row.title = Constants.StoreKey.timetableOpen
+				row.tag = Constants.StoreKey.timetableOpen
 				row.value = Date.init(timeIntervalSinceReferenceDate: (60*60*17))
 			}
 			<<< TimeRow() { row in
-				row.title = Constants.StoreKeys.timetableClose
-				row.tag = Constants.StoreKeys.timetableClose
+				row.title = Constants.StoreKey.timetableClose
+				row.tag = Constants.StoreKey.timetableClose
 				row.value = Date.init(timeIntervalSinceReferenceDate: (60*60))
 			}
 		+++ Section("Additional information")
 			<<< PhoneRow() { row in
-				row.placeholder = Constants.StoreKeys.telephone
-				row.tag = Constants.StoreKeys.telephone
+				row.placeholder = Constants.StoreKey.telephone
+				row.tag = Constants.StoreKey.telephone
 			}
 			<<< URLRow() { row in
-				row.placeholder = Constants.StoreKeys.website
-				row.tag = Constants.StoreKeys.website
+				row.placeholder = Constants.StoreKey.website
+				row.tag = Constants.StoreKey.website
 			}
 	}
 	
@@ -83,9 +83,9 @@ class AddStoreViewController: FormViewController {
 			store[key] = value as? String ?? ""
 		}
 		
-		store[Constants.StoreKeys.website] = castUrlToString(formValues[Constants.StoreKeys.website])
-		store[Constants.StoreKeys.timetableOpen] = formatDateToHourMinute( formValues[Constants.StoreKeys.timetableOpen] as! Date )
-		store[Constants.StoreKeys.timetableClose] = formatDateToHourMinute( formValues[Constants.StoreKeys.timetableClose] as! Date )
+		store[Constants.StoreKey.website] = castUrlToString(formValues[Constants.StoreKey.website])
+		store[Constants.StoreKey.timetableOpen] = formatDateToHourMinute( formValues[Constants.StoreKey.timetableOpen] as! Date )
+		store[Constants.StoreKey.timetableClose] = formatDateToHourMinute( formValues[Constants.StoreKey.timetableClose] as! Date )
 		
 		return store
 	}
@@ -113,8 +113,15 @@ class AddStoreViewController: FormViewController {
 		})
 	}
 	
+	//TODO : if err popup and dont perform segue else perform segue
 	func addStoreToFirebaseDatabase(_ storeData : [String : String]){
-		dbRef.child("store").childByAutoId().setValue(storeData)
+		dbRef.child("store").childByAutoId().setValue(storeData) { (err, databaseReference) in
+			if let err = err {
+				print(err.localizedDescription)
+			} else {
+			print(databaseReference)
+			}
+		}
 //		dbRef.child("user").setValue(["something" : ["keyOfSomething" : "valueOfSomething"]])
 	}
 

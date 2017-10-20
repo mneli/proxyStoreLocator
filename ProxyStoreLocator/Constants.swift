@@ -16,7 +16,7 @@ struct Constants {
 		static let addStore = "Add Store"
 		static let about = "About"
 	}
-	struct StoreKeys {
+	struct StoreKey {
 		static let name = "Name"
 		static let street = "Street"
 		static let city = "City"
@@ -25,5 +25,11 @@ struct Constants {
 		static let timetableClose = "Close"
 		static let telephone = "Telephone"
 		static let website = "Website"
+	}
+	struct UserKey {
+		static let username = "username"
+		static let email = "email"
+		static let password = "password"
+		static let repeatPassword = "repeat password"
 	}
 }
