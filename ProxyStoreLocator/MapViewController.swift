@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import FirebaseAuth
+import SafariServices
 
 class MapViewController: UIViewController, CLLocationManagerDelegate {
 
@@ -86,8 +87,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
 				performSegue(withIdentifier: "LoginSegue", sender: nil)
 			}
 		case Constants.MenuItems.about:
-			//TODO : send to github page
-			fallthrough
+			if let url = URL(string: "https://www.apple.com") {
+				// open browser option
+				// UIApplication.shared.open(url, options: [:])
+				// open page inside app option
+				let safariViewController = SFSafariViewController(url: url)
+				present(safariViewController, animated: true, completion: nil)
+				
+			}
 		default:
 			return
 		}
