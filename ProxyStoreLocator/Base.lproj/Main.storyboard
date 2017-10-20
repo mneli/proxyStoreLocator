@@ -254,26 +254,47 @@
         <!--Profile-->
         <scene sceneID="11I-V0-jy3">
             <objects>
-                <viewController title="Profile" id="RfK-If-p7D" customClass="UserProfileViewController" customModule="ProxyStoreLocator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="RfK-If-p7D" customClass="UserProfileViewController" customModule="ProxyStoreLocator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3Jr-3j-wjn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="op1-ft-cUu">
-                                <rect key="frame" x="157" y="318.5" width="60" height="30"/>
-                                <state key="normal" title="Sign Out"/>
-                                <connections>
-                                    <action selector="logoutButtonTapped" destination="RfK-If-p7D" eventType="touchUpInside" id="RO0-5H-M4k"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="svx-CI-cYJ">
+                                <rect key="frame" x="158" y="284" width="59.5" height="100"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PUJ-FQ-Z0C">
+                                        <rect key="frame" x="0.0" y="0.0" width="59.5" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="as9-OX-dFY">
+                                        <rect key="frame" x="5" y="50" width="50" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="op1-ft-cUu" firstAttribute="centerX" secondItem="3Jr-3j-wjn" secondAttribute="centerX" id="ENR-Nm-G9R"/>
-                            <constraint firstItem="op1-ft-cUu" firstAttribute="centerY" secondItem="3Jr-3j-wjn" secondAttribute="centerY" id="Eh2-vW-kxl"/>
+                            <constraint firstItem="svx-CI-cYJ" firstAttribute="centerY" secondItem="3Jr-3j-wjn" secondAttribute="centerY" id="Eyj-Rs-5AJ"/>
+                            <constraint firstItem="svx-CI-cYJ" firstAttribute="centerX" secondItem="3Jr-3j-wjn" secondAttribute="centerX" id="p99-WF-Fr5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Rt2-Mo-b57"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Profile" id="55Q-IY-Tx8">
+                        <barButtonItem key="rightBarButtonItem" title="Sign Out" id="Jzt-lB-urL">
+                            <connections>
+                                <action selector="logoutButtonTapped" destination="RfK-If-p7D" id="atd-hA-bgv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="userEmailLabel" destination="as9-OX-dFY" id="gpL-Ve-Qmb"/>
+                        <outlet property="usernameLabel" destination="PUJ-FQ-Z0C" id="o9v-2G-Kkt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="La9-ix-Nei" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

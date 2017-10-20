@@ -11,6 +11,10 @@ import FirebaseAuth
 
 class UserProfileViewController: UIViewController {
 
+	@IBOutlet weak var usernameLabel: UILabel!
+	@IBOutlet weak var userEmailLabel: UILabel!
+	
+	
 	@IBAction func logoutButtonTapped() {
 		do {
 			try Auth.auth().signOut()
@@ -20,15 +24,27 @@ class UserProfileViewController: UIViewController {
 	}
 	override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+		populateLabel()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
+	func populateLabel() {
+		if( isUserLoggedIn() ){
+			usernameLabel.text = Auth.auth().currentUser?.displayName
+			userEmailLabel.text = Auth.auth().currentUser?.email
+		} else {
+			logoutButtonTapped()
+		}
+	}
+	
+	func isUserLoggedIn() -> Bool {
+		return (Auth.auth().currentUser == nil) ? false : true
+	}
+
 
     /*
     // MARK: - Navigation

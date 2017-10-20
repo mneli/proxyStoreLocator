@@ -94,6 +94,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
 		
 	}
 	
+	// TODO : move to authhelper
 	func isUserLoggedIn() -> Bool {
 		return (Auth.auth().currentUser == nil) ? false : true
 	}
