@@ -25,6 +25,8 @@ struct Constants {
 		static let timetableClose = "Close"
 		static let telephone = "Telephone"
 		static let website = "Website"
+		static let cLatitude = "coordinateLatitude"
+		static let cLongitude = "coordinateLongitude"
 	}
 	struct UserKey {
 		static let username = "username"

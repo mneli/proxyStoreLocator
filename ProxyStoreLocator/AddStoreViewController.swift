@@ -9,14 +9,27 @@
 import UIKit
 import FirebaseDatabase
 import Eureka
+import CoreLocation
 
 class AddStoreViewController: FormViewController {
 
 	var dbRef: DatabaseReference!
 	var dbRefHandle: DatabaseHandle!
+	lazy var geocoder = CLGeocoder()
 	
 	@IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
-		addStoreToFirebaseDatabase(formatDataForFirebase())
+		var dataForFirebase = formatDataForFirebase()
+		
+		let address = "\(dataForFirebase[Constants.StoreKey.street]!), \(dataForFirebase[Constants.StoreKey.city]!)"
+		
+		geocoder.geocodeAddressString(address) { (placemarks, error) in
+			let coordinates = self.processResponse(withPlacemarks: placemarks, error: error)
+			if (coordinates != nil){
+				dataForFirebase[Constants.StoreKey.cLatitude] = "\(coordinates!.latitude)"
+				dataForFirebase[Constants.StoreKey.cLongitude] = String(describing: coordinates!.latitude)
+			}
+			self.addStoreToFirebaseDatabase(dataForFirebase)
+		}
 	}
 	
     override func viewDidLoad() {
@@ -36,43 +49,7 @@ class AddStoreViewController: FormViewController {
 		print("STORE listener removed")
 	}
 	
-	func createForm() {
-		form
-		+++ Section("Store details")
-			<<< NameRow() { row in
-				row.placeholder = Constants.StoreKey.name
-				row.tag = Constants.StoreKey.name
-			}
-			<<< TextRow() { row in
-				row.placeholder = Constants.StoreKey.street
-				row.tag = Constants.StoreKey.street
-			}
-			<<< TextRow() { row in
-				row.placeholder = Constants.StoreKey.city
-				row.tag = Constants.StoreKey.city
-			}
-			
-		+++ Section(Constants.StoreKey.timetable)
-			<<< TimeRow() { row in
-				row.title = Constants.StoreKey.timetableOpen
-				row.tag = Constants.StoreKey.timetableOpen
-				row.value = Date.init(timeIntervalSinceReferenceDate: (60*60*17))
-			}
-			<<< TimeRow() { row in
-				row.title = Constants.StoreKey.timetableClose
-				row.tag = Constants.StoreKey.timetableClose
-				row.value = Date.init(timeIntervalSinceReferenceDate: (60*60))
-			}
-		+++ Section("Additional information")
-			<<< PhoneRow() { row in
-				row.placeholder = Constants.StoreKey.telephone
-				row.tag = Constants.StoreKey.telephone
-			}
-			<<< URLRow() { row in
-				row.placeholder = Constants.StoreKey.website
-				row.tag = Constants.StoreKey.website
-			}
-	}
+	
 	
 	func formatDataForFirebase() -> [String : String] {
 		//TODO : reformat this noob data treatment
@@ -124,7 +101,65 @@ class AddStoreViewController: FormViewController {
 		}
 //		dbRef.child("user").setValue(["something" : ["keyOfSomething" : "valueOfSomething"]])
 	}
+	
+	
+	private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) -> CLLocationCoordinate2D? {
+		
+		if let error = error {
+			print("Unable to Forward Geocode Address \(error)")
+		} else {
+			var location: CLLocation?
+			
+			if let placemarks = placemarks, placemarks.count > 0 {
+				location = placemarks.first?.location
+			}
+			
+			if let location = location {
+				return location.coordinate
+			} else {
+				print("No Matching Location Found")
+			}
+		}
+		return nil
+	}
 
+	func createForm() {
+		form
+			+++ Section("Store details")
+			<<< NameRow() { row in
+				row.placeholder = Constants.StoreKey.name
+				row.tag = Constants.StoreKey.name
+			}
+			<<< TextRow() { row in
+				row.placeholder = Constants.StoreKey.street
+				row.tag = Constants.StoreKey.street
+			}
+			<<< TextRow() { row in
+				row.placeholder = Constants.StoreKey.city
+				row.tag = Constants.StoreKey.city
+			}
+			
+			+++ Section(Constants.StoreKey.timetable)
+			<<< TimeRow() { row in
+				row.title = Constants.StoreKey.timetableOpen
+				row.tag = Constants.StoreKey.timetableOpen
+				row.value = Date.init(timeIntervalSinceReferenceDate: (60*60*17))
+			}
+			<<< TimeRow() { row in
+				row.title = Constants.StoreKey.timetableClose
+				row.tag = Constants.StoreKey.timetableClose
+				row.value = Date.init(timeIntervalSinceReferenceDate: (60*60))
+			}
+			+++ Section("Additional information")
+			<<< PhoneRow() { row in
+				row.placeholder = Constants.StoreKey.telephone
+				row.tag = Constants.StoreKey.telephone
+			}
+			<<< URLRow() { row in
+				row.placeholder = Constants.StoreKey.website
+				row.tag = Constants.StoreKey.website
+		}
+	}
     /*
     // MARK: - Navigation
 
