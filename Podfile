@@ -10,5 +10,6 @@ target 'ProxyStoreLocator' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Eureka'
+  pod 'NextResponderTextField'
 
 end
