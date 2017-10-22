@@ -11,7 +11,7 @@ import MapKit
 import FirebaseAuth
 import SafariServices
 
-class MapViewController: UIViewController, CLLocationManagerDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
 
 	let locationManager = CLLocationManager()
 	let defaultLocation = CLLocationCoordinate2DMake(CLLocationDegrees(50.847974), CLLocationDegrees(4.350370))
@@ -36,6 +36,54 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
 		locationManager.requestWhenInUseAuthorization()
 		locationManager.startUpdatingLocation()
 		zoomToUserLocation()
+		mapView.delegate = self
+		let store = createSingleStoreForTest()
+		mapView.addAnnotation(store)
+		
+	}
+	
+	func createSingleStoreForTest() -> Store {
+		return Store(name: "Some store", street: "Rue du midi 30", city: "1000 Brussels", openingTime: "18:00", closingTime: "02:00", telephone: "", website: "", coordinatesLat: "50.8469193", coordinatesLong: "4.3506287")
+	}
+	
+	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+		
+		guard let annotation = annotation as? Store else { return nil }
+
+		let identifier = "store"
+		var view: MKMarkerAnnotationView
+		
+		if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+			as? MKMarkerAnnotationView {
+			dequeuedView.annotation = annotation
+			view = dequeuedView
+		} else {
+			
+			view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+			view.canShowCallout = true
+			view.calloutOffset = CGPoint(x: -5, y: 5)
+			view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+		}
+		return view
+	}
+	
+	
+	
+	func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView,
+	             calloutAccessoryControlTapped control: UIControl) {
+		let store = view.annotation as! Store
+//		let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+//		location.mapItem().openInMaps(launchOptions: launchOptions)
+		self.performSegue(withIdentifier: "StoreDetailsSegue", sender: store)
+		
+	}
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.destination is StoreDetailsViewController {
+			if let destinationVC = segue.destination as? StoreDetailsViewController, let store = sender as? Store {
+				destinationVC.store = store
+			}
+		}
 	}
 
 	override func didReceiveMemoryWarning() {

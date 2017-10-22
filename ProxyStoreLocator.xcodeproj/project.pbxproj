@@ -21,6 +21,8 @@
 		B8C6B1D11F8EAC2E001127FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8C6B1CF1F8EAC2E001127FD /* Main.storyboard */; };
 		B8C6B1D31F8EAC2E001127FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8C6B1D21F8EAC2E001127FD /* Assets.xcassets */; };
 		B8C6B1D61F8EAC2E001127FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8C6B1D41F8EAC2E001127FD /* LaunchScreen.storyboard */; };
+		B8DD93A01F9BE304000A3CB7 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DD939F1F9BE304000A3CB7 /* Store.swift */; };
+		B8DD93A21F9C0474000A3CB7 /* StoreDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DD93A11F9C0474000A3CB7 /* StoreDetailsViewController.swift */; };
 		B8E2AB581F96A3DB00CDAD7B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E2AB571F96A3DB00CDAD7B /* Constants.swift */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +45,8 @@
 		B8C6B1D21F8EAC2E001127FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B8C6B1D51F8EAC2E001127FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B8C6B1D71F8EAC2E001127FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B8DD939F1F9BE304000A3CB7 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		B8DD93A11F9C0474000A3CB7 /* StoreDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreDetailsViewController.swift; sourceTree = "<group>"; };
 		B8E2AB571F96A3DB00CDAD7B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,6 +106,8 @@
 				B87F770C1F979EB3009777CF /* UserProfileViewController.swift */,
 				B81210DA1F98012100B5B452 /* AddStoreViewController.swift */,
 				B819AE6A1F9A951600DE4EAF /* CustomEurekaCell.swift */,
+				B8DD939F1F9BE304000A3CB7 /* Store.swift */,
+				B8DD93A11F9C0474000A3CB7 /* StoreDetailsViewController.swift */,
 			);
 			path = ProxyStoreLocator;
 			sourceTree = "<group>";
@@ -259,6 +265,8 @@
 				B85399A41F975F5F0039DAC2 /* UIStoryboardSegueWithCompletion.swift in Sources */,
 				B80D823A1F95504F0091035B /* MenuViewController.swift in Sources */,
 				B819AE6B1F9A951600DE4EAF /* CustomEurekaCell.swift in Sources */,
+				B8DD93A21F9C0474000A3CB7 /* StoreDetailsViewController.swift in Sources */,
+				B8DD93A01F9BE304000A3CB7 /* Store.swift in Sources */,
 				B8C6B1CC1F8EAC2E001127FD /* AppDelegate.swift in Sources */,
 				B81210DB1F98012100B5B452 /* AddStoreViewController.swift in Sources */,
 				B80D823E1F9556BF0091035B /* RegistrationViewController.swift in Sources */,

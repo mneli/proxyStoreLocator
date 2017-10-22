@@ -55,6 +55,7 @@
                         <segue destination="ekA-yC-GYB" kind="show" identifier="FavoritesSegue" id="74M-vR-LZN"/>
                         <segue destination="RfK-If-p7D" kind="show" identifier="ProfileSegue" id="gV3-ew-N5N"/>
                         <segue destination="1Cy-Yr-4Op" kind="show" identifier="AddStoreSegue" id="YzA-iB-Wnz"/>
+                        <segue destination="LLs-jP-awa" kind="show" identifier="StoreDetailsSegue" id="pcW-0P-33i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -86,7 +87,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="La2-h2-EIh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1610" y="1348"/>
+            <point key="canvasLocation" x="-1935" y="1445"/>
         </scene>
         <!--Add Store-->
         <scene sceneID="UAK-Wu-JpN">
@@ -108,31 +109,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mxt-2p-ytL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1610" y="528"/>
+            <point key="canvasLocation" x="-716" y="16"/>
         </scene>
-        <!--View Controller-->
+        <!--Store Details View Controller-->
         <scene sceneID="l4q-1F-v3Z">
             <objects>
-                <viewController id="LLs-jP-awa" sceneMemberID="viewController">
+                <viewController id="LLs-jP-awa" customClass="StoreDetailsViewController" customModule="ProxyStoreLocator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="83E-9V-6tG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Store details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8pp-I0-Bpi">
-                                <rect key="frame" x="139" y="323" width="96" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="ael-8o-1mA"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bTH-J2-m5T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-569" y="528"/>
+            <point key="canvasLocation" x="-942" y="704"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="8ML-3S-AjG">
