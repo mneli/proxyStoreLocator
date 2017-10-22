@@ -9,14 +9,17 @@
 import UIKit
 import MapKit
 import FirebaseAuth
+import FirebaseDatabase
 import SafariServices
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
-
+	
+	var dbRef: DatabaseReference!
+	var dbRefHandle: DatabaseHandle!
+	
 	let locationManager = CLLocationManager()
 	let defaultLocation = CLLocationCoordinate2DMake(CLLocationDegrees(50.847974), CLLocationDegrees(4.350370))
 	let zoomDistance: CLLocationDistance = 700
-	
 	
 	@IBOutlet weak var mapView: MKMapView!
 	
@@ -33,49 +36,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		locationManager.delegate = self
+		mapView.delegate = self
+		setupFirebaseDatabaseListener()
 		locationManager.requestWhenInUseAuthorization()
 		locationManager.startUpdatingLocation()
 		zoomToUserLocation()
-		mapView.delegate = self
-		let store = createSingleStoreForTest()
-		mapView.addAnnotation(store)
-		
 	}
 	
-	func createSingleStoreForTest() -> Store {
-		return Store(name: "Some store", street: "Rue du midi 30", city: "1000 Brussels", openingTime: "18:00", closingTime: "02:00", telephone: "", website: "", coordinatesLat: "50.8469193", coordinatesLong: "4.3506287")
-	}
-	
-	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-		
-		guard let annotation = annotation as? Store else { return nil }
-
-		let identifier = "store"
-		var view: MKMarkerAnnotationView
-		
-		if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-			as? MKMarkerAnnotationView {
-			dequeuedView.annotation = annotation
-			view = dequeuedView
-		} else {
-			
-			view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-			view.canShowCallout = true
-			view.calloutOffset = CGPoint(x: -5, y: 5)
-			view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-		}
-		return view
-	}
-	
-	
-	
-	func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView,
-	             calloutAccessoryControlTapped control: UIControl) {
-		let store = view.annotation as! Store
-//		let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
-//		location.mapItem().openInMaps(launchOptions: launchOptions)
-		self.performSegue(withIdentifier: "StoreDetailsSegue", sender: store)
-		
+	override func didReceiveMemoryWarning() {
+		super.didReceiveMemoryWarning()
+		// Dispose of any resources that can be recreated.
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -85,33 +55,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 			}
 		}
 	}
-
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
-	}
 	
-	func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-		if status == .denied {
-			let alert = UIAlertController(title: "Location permission not granted", message: "Please allow this app to get your location when in use for a better user experience under \nSettings > Privacy > Location Services", preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-			self.present(alert, animated: true, completion: nil)
-		} else if status == .authorizedWhenInUse{
-			zoomToUserLocation()
-			mapView.showsUserLocation = true
-		}
+	deinit {
+		dbRef.child("store").removeObserver(withHandle: dbRefHandle)
 	}
-	
-	func zoomToUserLocation() {
-		let viewRegion: MKCoordinateRegion
-		if let userCurrentLoc = locationManager.location?.coordinate {
-			viewRegion = MKCoordinateRegionMakeWithDistance(userCurrentLoc, zoomDistance, zoomDistance)
-		} else {
-			viewRegion = MKCoordinateRegionMakeWithDistance(defaultLocation, zoomDistance, zoomDistance)
-		}
-		mapView.setRegion(viewRegion, animated: true)
-	}
-	
 	
 	func performSegueWithMenuChoice( _ choice : String ) {
 		//TODO : refactor checklogin cases
@@ -136,24 +83,75 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 			}
 		case Constants.MenuItems.about:
 			if let url = URL(string: "https://www.apple.com") {
-				// open browser option
-				// UIApplication.shared.open(url, options: [:])
-				// open page inside app option
 				let safariViewController = SFSafariViewController(url: url)
 				present(safariViewController, animated: true, completion: nil)
-				
 			}
 		default:
 			return
 		}
+	}
+	
+	func setupFirebaseDatabaseListener() {
+		dbRef = Database.database().reference()
+		dbRefHandle = dbRef.child("store").observe(DataEventType.childAdded, with: { (dataSnapshot) in
+			if let storeData = dataSnapshot.value as? Dictionary<String, String> {
+				let store = Store(storeData)
+				self.mapView.addAnnotation(store)
+			}
+		})
+	}
+	
+	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+		guard let annotation = annotation as? Store else { return nil }
+
+		let identifier = "store"
+		var view: MKMarkerAnnotationView
 		
+		if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+			as? MKMarkerAnnotationView {
+			dequeuedView.annotation = annotation
+			view = dequeuedView
+		} else {
+			view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+			view.canShowCallout = true
+			view.calloutOffset = CGPoint(x: -5, y: 5)
+			view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+		}
+		return view
+	}
+	
+	func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView,
+	             calloutAccessoryControlTapped control: UIControl) {
+		let store = view.annotation as! Store
+		self.performSegue(withIdentifier: "StoreDetailsSegue", sender: store)
+		
+	}
+	
+	func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+		if status == .denied {
+			let alert = UIAlertController(title: "Location permission not granted", message: "Please allow this app to get your location when in use for a better user experience under \nSettings > Privacy > Location Services", preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+			self.present(alert, animated: true, completion: nil)
+		} else if status == .authorizedWhenInUse{
+			zoomToUserLocation()
+			mapView.showsUserLocation = true
+		}
+	}
+	
+	func zoomToUserLocation() {
+		let viewRegion: MKCoordinateRegion
+		if let userCurrentLoc = locationManager.location?.coordinate {
+			viewRegion = MKCoordinateRegionMakeWithDistance(userCurrentLoc, zoomDistance, zoomDistance)
+		} else {
+			viewRegion = MKCoordinateRegionMakeWithDistance(defaultLocation, zoomDistance, zoomDistance)
+		}
+		mapView.setRegion(viewRegion, animated: true)
 	}
 	
 	// TODO : move to authhelper
 	func isUserLoggedIn() -> Bool {
 		return (Auth.auth().currentUser == nil) ? false : true
 	}
-
 
 }
 

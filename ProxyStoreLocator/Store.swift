@@ -49,6 +49,21 @@ class Store: NSObject, MKAnnotation {
 		super.init()
 	}
 	
+	init(_ storeData : [String : String]) {
+		
+		self.name = storeData[Constants.StoreKey.name]!
+		self.street = storeData[Constants.StoreKey.street]!
+		self.city = storeData[Constants.StoreKey.city]!
+		self.openingTime = storeData[Constants.StoreKey.timetableOpen]!
+		self.closingTime = storeData[Constants.StoreKey.timetableClose]!
+		self.telephone = storeData[Constants.StoreKey.telephone]!
+		self.website = URL(string: storeData[Constants.StoreKey.website]!)
+		self.coordinatesLat = Double(storeData[Constants.StoreKey.cLatitude]!)!
+		self.coordinatesLong = Double(storeData[Constants.StoreKey.cLongitude]!)!
+		
+		super.init()
+	}
+	
 	func fullAddress() -> String {
 		return "\(self.street), \(self.city)"
 	}

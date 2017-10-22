@@ -14,7 +14,7 @@ import CoreLocation
 class AddStoreViewController: FormViewController {
 
 	var dbRef: DatabaseReference!
-	var dbRefHandle: DatabaseHandle!
+//	var dbRefHandle: DatabaseHandle!
 	lazy var geocoder = CLGeocoder()
 	
 	@IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
@@ -26,7 +26,7 @@ class AddStoreViewController: FormViewController {
 			let coordinates = self.processResponse(withPlacemarks: placemarks, error: error)
 			if (coordinates != nil){
 				dataForFirebase[Constants.StoreKey.cLatitude] = "\(coordinates!.latitude)"
-				dataForFirebase[Constants.StoreKey.cLongitude] = String(describing: coordinates!.latitude)
+				dataForFirebase[Constants.StoreKey.cLongitude] = String(describing: coordinates!.longitude)
 			}
 			self.addStoreToFirebaseDatabase(dataForFirebase)
 		}
@@ -43,13 +43,6 @@ class AddStoreViewController: FormViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-	
-	deinit {
-		//dbRef.child("stores").removeObserver(withHandle: dbRefHandle)
-		print("STORE listener removed")
-	}
-	
-	
 	
 	func formatDataForFirebase() -> [String : String] {
 		//TODO : reformat this noob data treatment
@@ -82,13 +75,7 @@ class AddStoreViewController: FormViewController {
 		return ""
 	}
 	
-	func setupFirebaseDatabaseListener() {
-		dbRef = Database.database().reference()
-		dbRefHandle = dbRef.child("stores").observe(DataEventType.childAdded, with: { (dataSnapshot) in
-			print("something was added to db")
-			print(dataSnapshot)
-		})
-	}
+
 	
 	//TODO : if err popup and dont perform segue else perform segue
 	func addStoreToFirebaseDatabase(_ storeData : [String : String]){
