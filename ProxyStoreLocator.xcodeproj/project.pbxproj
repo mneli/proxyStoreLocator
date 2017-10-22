@@ -14,6 +14,7 @@
 		B80D823E1F9556BF0091035B /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80D823D1F9556BF0091035B /* RegistrationViewController.swift */; };
 		B81210DB1F98012100B5B452 /* AddStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81210DA1F98012100B5B452 /* AddStoreViewController.swift */; };
 		B819AE6B1F9A951600DE4EAF /* CustomEurekaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B819AE6A1F9A951600DE4EAF /* CustomEurekaCell.swift */; };
+		B8237D081F9D50A3002475E4 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8237D071F9D50A3002475E4 /* Utilities.swift */; };
 		B85399A41F975F5F0039DAC2 /* UIStoryboardSegueWithCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85399A31F975F5F0039DAC2 /* UIStoryboardSegueWithCompletion.swift */; };
 		B87F770D1F979EB3009777CF /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B87F770C1F979EB3009777CF /* UserProfileViewController.swift */; };
 		B8C6B1CC1F8EAC2E001127FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C6B1CB1F8EAC2E001127FD /* AppDelegate.swift */; };
@@ -36,6 +37,7 @@
 		B80D823D1F9556BF0091035B /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		B81210DA1F98012100B5B452 /* AddStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStoreViewController.swift; sourceTree = "<group>"; };
 		B819AE6A1F9A951600DE4EAF /* CustomEurekaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomEurekaCell.swift; sourceTree = "<group>"; };
+		B8237D071F9D50A3002475E4 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		B85399A31F975F5F0039DAC2 /* UIStoryboardSegueWithCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboardSegueWithCompletion.swift; sourceTree = "<group>"; };
 		B87F770C1F979EB3009777CF /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		B8C6B1C81F8EAC2E001127FD /* ProxyStoreLocator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProxyStoreLocator.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,6 +110,7 @@
 				B819AE6A1F9A951600DE4EAF /* CustomEurekaCell.swift */,
 				B8DD939F1F9BE304000A3CB7 /* Store.swift */,
 				B8DD93A11F9C0474000A3CB7 /* StoreDetailsViewController.swift */,
+				B8237D071F9D50A3002475E4 /* Utilities.swift */,
 			);
 			path = ProxyStoreLocator;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				B87F770D1F979EB3009777CF /* UserProfileViewController.swift in Sources */,
 				B8C6B1CE1F8EAC2E001127FD /* MapViewController.swift in Sources */,
 				B85399A41F975F5F0039DAC2 /* UIStoryboardSegueWithCompletion.swift in Sources */,
+				B8237D081F9D50A3002475E4 /* Utilities.swift in Sources */,
 				B80D823A1F95504F0091035B /* MenuViewController.swift in Sources */,
 				B819AE6B1F9A951600DE4EAF /* CustomEurekaCell.swift in Sources */,
 				B8DD93A21F9C0474000A3CB7 /* StoreDetailsViewController.swift in Sources */,

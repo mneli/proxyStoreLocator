@@ -14,6 +14,10 @@ class LoginViewController: UIViewController {
 	@IBOutlet weak var emailTextFiled: UITextField!
 	@IBOutlet weak var passwordTextField: UITextField!
 	
+	@IBAction func forgotPasswordButtonTapped() {
+		sendEmailToResetPassword()
+	}
+	
 	@IBAction func loginButtonTapped() {
 		loginUserWithEmailPassword()
 	}
@@ -21,7 +25,6 @@ class LoginViewController: UIViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,6 +45,37 @@ class LoginViewController: UIViewController {
 				print("username : \(String(describing: user.displayName)) \n email : \(String(describing: user.email)) \n userid : \(user.uid)")
 			}
 		}
+		
+	}
+	
+	func sendEmailToResetPassword() {
+		let alert = UIAlertController(title: "Reset Password", message: "Please provide your email address.", preferredStyle: .alert)
+		
+		alert.addTextField { (forgotPasswordEmailTextField) in
+			forgotPasswordEmailTextField.keyboardType = .emailAddress
+			if let emailText = self.emailTextFiled.text {
+				if (!emailText.isEmpty) {
+					forgotPasswordEmailTextField.text = emailText
+				}
+			}
+		}
+		
+		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+		
+		alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+			if let email = alert.textFields![0].text {
+				Auth.auth().sendPasswordReset(withEmail: email, completion: { (err) in
+					if err != nil {
+						Utilities().showAlert(title: "Error", message: "Invalid email", viewController: self, actionTitle: "Dismiss", actionStyle: .cancel)
+					} else {
+						Utilities().showAlert(title: "Succes", message: "Please check your email for a password reset link", viewController: self, actionTitle: "OK", actionStyle: .default)
+					}
+				})
+			}
+			
+		}))
+		
+		self.present(alert, animated: true, completion: nil)
 		
 	}
 
