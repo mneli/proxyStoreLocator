@@ -21,8 +21,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 	let defaultLocation = CLLocationCoordinate2DMake(CLLocationDegrees(50.847974), CLLocationDegrees(4.350370))
 	let zoomDistance: CLLocationDistance = 700
 	
+	@IBOutlet weak var centerMapButton: UIButton!
 	@IBOutlet weak var mapView: MKMapView!
 	
+	@IBAction func centerMapButtonTapped() {
+		zoomToUserLocation()
+	}
 	@IBAction func unWindToMap(unWindSegue: UIStoryboardSegue) {
 		if unWindSegue.source is MenuViewController {
 			if let segue = unWindSegue as? UIStoryboardSegueWithCompletion, let senderVC = unWindSegue.source as? MenuViewController {
@@ -132,9 +136,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 			let alert = UIAlertController(title: "Location permission not granted", message: "Please allow this app to get your location when in use for a better user experience under \nSettings > Privacy > Location Services", preferredStyle: .alert)
 			alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
 			self.present(alert, animated: true, completion: nil)
+			centerMapButton.isHidden = true
 		} else if status == .authorizedWhenInUse{
 			zoomToUserLocation()
 			mapView.showsUserLocation = true
+			centerMapButton.isHidden = false
 		}
 	}
 	

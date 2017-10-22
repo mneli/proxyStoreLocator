@@ -20,11 +20,24 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="fk1-Ac-Ew7">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IKu-Pn-zYh">
+                                <rect key="frame" x="321" y="613" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Koe-IG-tgi"/>
+                                    <constraint firstAttribute="width" constant="44" id="upd-IU-Mb7"/>
+                                </constraints>
+                                <state key="normal" image="radar-icon"/>
+                                <connections>
+                                    <action selector="centerMapButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="msT-ou-sHj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="IKu-Pn-zYh" secondAttribute="trailing" constant="10" id="AUG-ak-sDW"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="fk1-Ac-Ew7" secondAttribute="bottom" id="Euc-QM-CdF"/>
                             <constraint firstItem="fk1-Ac-Ew7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="IrY-xk-R0u"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="IKu-Pn-zYh" secondAttribute="bottom" constant="10" id="O8c-Fb-m7r"/>
                             <constraint firstItem="fk1-Ac-Ew7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="fQx-oD-eh3"/>
                             <constraint firstItem="fk1-Ac-Ew7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="m7F-Wx-9ow"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fk1-Ac-Ew7" secondAttribute="trailing" id="p3U-Fs-AFi"/>
@@ -50,6 +63,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="centerMapButton" destination="IKu-Pn-zYh" id="Nea-dB-5Cp"/>
                         <outlet property="mapView" destination="fk1-Ac-Ew7" id="hbh-bT-Mza"/>
                         <segue destination="CBM-JJ-COY" kind="show" identifier="LoginSegue" id="iOF-1Z-Sdb"/>
                         <segue destination="ekA-yC-GYB" kind="show" identifier="FavoritesSegue" id="74M-vR-LZN"/>
@@ -465,5 +479,6 @@
         <image name="map-icon" width="50" height="50"/>
         <image name="menu-icon" width="50" height="50"/>
         <image name="profile-icon" width="50" height="50"/>
+        <image name="radar-icon" width="50" height="50"/>
     </resources>
 </document>
