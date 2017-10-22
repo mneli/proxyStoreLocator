@@ -7,15 +7,34 @@
 //
 
 import UIKit
+import MapKit
 
 class StoreDetailsViewController: UIViewController {
 	
 	var store: Store! = nil
 	
-    override func viewDidLoad() {
+	@IBOutlet weak var storeNameLabel: UILabel!
+	@IBOutlet weak var storeTimeTableLabel: UILabel!
+	@IBOutlet weak var storeTelephoneLabel: UILabel!
+	@IBOutlet weak var storeWebsiteLabel: UILabel!
+	@IBOutlet weak var storeAddressLabel: UILabel!
+	
+	@IBAction func navigateButtonTapped() {
+		 self.mapItem().openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDefault])
+	}
+	
+	func mapItem() -> MKMapItem {
+		
+		let placemark = MKPlacemark(coordinate: store.coordinate)
+		let mapItem = MKMapItem(placemark: placemark)
+		mapItem.name = store.title
+		
+		return mapItem
+	}
+	
+	override func viewDidLoad() {
         super.viewDidLoad()
-		print(store.fullAddress())
-        // Do any additional setup after loading the view.
+		populateLabels()
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,6 +42,17 @@ class StoreDetailsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 	
+	func populateLabels() {
+		storeNameLabel.text = store.name
+		storeTimeTableLabel.text = "Timetable : \(store.openingTime)-\(store.closingTime)"
+		if store.telephone != "" {
+			storeTelephoneLabel.text = store.telephone
+		}
+		if store.website?.absoluteString != "" {
+			storeWebsiteLabel.text = store.website?.absoluteString
+		}
+		storeAddressLabel.text = store.fullAddress()
+	}
 
 
     /*
