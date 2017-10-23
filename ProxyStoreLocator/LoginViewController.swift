@@ -41,11 +41,12 @@ class LoginViewController: UIViewController {
 		let password = passwordTextField.text!
 		
 		Auth.auth().signIn(withEmail: email, password: password) { (user, err) in
-			if let err = err {
-				print(err.localizedDescription)
+			if err != nil {
+				Utilities().showAlert(title: "Error", message: "Wrong email and/or password", viewController: self, actionTitle: "Dissmiss", actionStyle: .cancel)
 			}
 			if let user = user {
-				print("username : \(String(describing: user.displayName)) \n email : \(String(describing: user.email)) \n userid : \(user.uid)")
+				Utilities().showAlert(title: "Welcome back", message: "\(String(describing: user.displayName))", viewController: self, actionTitle: "Dissmiss", actionStyle: .default)
+				// TODO: Perform segue to map
 			}
 		}
 		

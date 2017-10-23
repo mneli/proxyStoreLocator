@@ -86,7 +86,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 				performSegue(withIdentifier: "LoginSegue", sender: nil)
 			}
 		case Constants.MenuItems.about:
-			if let url = URL(string: "https://www.apple.com") {
+			if let url = URL(string: "https://github.com/mneli/proxyStoreLocator") {
 				let safariViewController = SFSafariViewController(url: url)
 				present(safariViewController, animated: true, completion: nil)
 			}
