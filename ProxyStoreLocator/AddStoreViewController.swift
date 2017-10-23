@@ -14,21 +14,26 @@ import CoreLocation
 class AddStoreViewController: FormViewController {
 
 	var dbRef: DatabaseReference!
-//	var dbRefHandle: DatabaseHandle!
 	lazy var geocoder = CLGeocoder()
 	
 	@IBAction func saveButtonTapped(_ sender: UIBarButtonItem) {
-		var dataForFirebase = formatDataForFirebase()
 		
-		let address = "\(dataForFirebase[Constants.StoreKey.street]!), \(dataForFirebase[Constants.StoreKey.city]!)"
-		
-		geocoder.geocodeAddressString(address) { (placemarks, error) in
-			let coordinates = self.processResponse(withPlacemarks: placemarks, error: error)
-			if (coordinates != nil){
-				dataForFirebase[Constants.StoreKey.cLatitude] = "\(coordinates!.latitude)"
-				dataForFirebase[Constants.StoreKey.cLongitude] = String(describing: coordinates!.longitude)
+		if (form.validate().isEmpty) {
+			var storeDataDictionary = formatFormDataToDictionary()
+			
+			let fullAddressForGeocoder = "\(storeDataDictionary[Constants.StoreKey.street]!), \(storeDataDictionary[Constants.StoreKey.city]!)"
+			
+			geocoder.geocodeAddressString(fullAddressForGeocoder) { (placemarks, error) in
+				let coordinates = self.processGeocoderResponse(withPlacemarks: placemarks, error: error)
+				if (coordinates != nil){
+					storeDataDictionary[Constants.StoreKey.cLatitude] = String(describing: coordinates!.latitude)
+					storeDataDictionary[Constants.StoreKey.cLongitude] = String(describing: coordinates!.longitude)
+					self.addStoreToFirebaseDatabase(storeDataDictionary)
+				} else {
+					Utilities().showAlert(title: "Invalid address", message: "Please enter a valid address to add", viewController: self, actionTitle: "Dismiss", actionStyle: .cancel)
+				}
+				
 			}
-			self.addStoreToFirebaseDatabase(dataForFirebase)
 		}
 	}
 	
@@ -36,7 +41,6 @@ class AddStoreViewController: FormViewController {
         super.viewDidLoad()
 		createForm()
 		dbRef = Database.database().reference()
-		//setupFirebaseDatabaseListener()
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,8 +48,8 @@ class AddStoreViewController: FormViewController {
         // Dispose of any resources that can be recreated.
     }
 	
-	func formatDataForFirebase() -> [String : String] {
-		//TODO : reformat this noob data treatment
+	func formatFormDataToDictionary() -> [String : String] {
+		//TODO : reformat data treatment using Store class
 		let formValues = form.values()
 		var store = [String : String]()
 		
@@ -53,48 +57,28 @@ class AddStoreViewController: FormViewController {
 			store[key] = value as? String ?? ""
 		}
 		
-		store[Constants.StoreKey.website] = castUrlToString(formValues[Constants.StoreKey.website])
-		store[Constants.StoreKey.timetableOpen] = formatDateToHourMinute( formValues[Constants.StoreKey.timetableOpen] as! Date )
-		store[Constants.StoreKey.timetableClose] = formatDateToHourMinute( formValues[Constants.StoreKey.timetableClose] as! Date )
+		store[Constants.StoreKey.website] = Utilities().castUrlToString(formValues[Constants.StoreKey.website] ?? "")
+		store[Constants.StoreKey.timetableOpen] = Utilities().formatDateToHourMinute( formValues[Constants.StoreKey.timetableOpen] as! Date )
+		store[Constants.StoreKey.timetableClose] = Utilities().formatDateToHourMinute( formValues[Constants.StoreKey.timetableClose] as! Date )
 		
 		return store
 	}
 	
-	//TODO : move to utilities
-	func formatDateToHourMinute(_ date : Date) -> String {
-		let formatter = DateFormatter()
-		formatter.dateFormat = "HH:mm"
-		
-		return formatter.string(from: date)
-	}
 	
-	func castUrlToString(_ url : Any?) -> String {
-		if let url = url as? URL {
-			return url.absoluteString
-		}
-		return ""
-	}
-	
-
-	
-	//TODO : if err popup and dont perform segue else perform segue
 	func addStoreToFirebaseDatabase(_ storeData : [String : String]){
 		dbRef.child("store").childByAutoId().setValue(storeData) { (err, databaseReference) in
-			if let err = err {
-				print(err.localizedDescription)
+			if err != nil {
+				Utilities().showAlert(title: "Error", message: "Please check if you have an active internet connection and try again", viewController: self, actionTitle: "Dismiss", actionStyle: .cancel)
 			} else {
-			print(databaseReference)
+				Utilities().showAlert(title: "Succes", message: "Store added", viewController: self, actionTitle: "OK", actionStyle: .default)
+				// TODO: Perform segue to MapViewController
 			}
 		}
-//		dbRef.child("user").setValue(["something" : ["keyOfSomething" : "valueOfSomething"]])
 	}
 	
 	
-	private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) -> CLLocationCoordinate2D? {
-		
-		if let error = error {
-			print("Unable to Forward Geocode Address \(error)")
-		} else {
+	private func processGeocoderResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) -> CLLocationCoordinate2D? {
+		if error == nil {
 			var location: CLLocation?
 			
 			if let placemarks = placemarks, placemarks.count > 0 {
@@ -103,8 +87,6 @@ class AddStoreViewController: FormViewController {
 			
 			if let location = location {
 				return location.coordinate
-			} else {
-				print("No Matching Location Found")
 			}
 		}
 		return nil
@@ -114,16 +96,39 @@ class AddStoreViewController: FormViewController {
 		form
 			+++ Section("Store details")
 			<<< NameRow() { row in
-				row.placeholder = Constants.StoreKey.name
+				row.title = Constants.StoreKey.name
 				row.tag = Constants.StoreKey.name
+				row.add(rule: RuleRequired())
+				row.cellUpdate({ (cell, row) in
+					if !row.isValid {
+						cell.titleLabel?.textColor = .red
+						row.placeholder = "required"
+					}
+				})
 			}
+			
 			<<< TextRow() { row in
-				row.placeholder = Constants.StoreKey.street
+				row.title = Constants.StoreKey.street
 				row.tag = Constants.StoreKey.street
+				row.add(rule: RuleRequired())
+				row.cellUpdate({ (cell, row) in
+					if !row.isValid {
+						cell.titleLabel?.textColor = .red
+						row.placeholder = "required"
+					}
+				})
 			}
+			
 			<<< TextRow() { row in
-				row.placeholder = Constants.StoreKey.city
+				row.title = Constants.StoreKey.city
 				row.tag = Constants.StoreKey.city
+				row.add(rule: RuleRequired())
+				row.cellUpdate({ (cell, row) in
+					if !row.isValid {
+						cell.titleLabel?.textColor = .red
+						row.placeholder = "required"
+					}
+				})
 			}
 			
 			+++ Section(Constants.StoreKey.timetable)
@@ -138,14 +143,23 @@ class AddStoreViewController: FormViewController {
 				row.value = Date.init(timeIntervalSinceReferenceDate: (60*60))
 			}
 			+++ Section("Additional information")
+			
+			<<< URLRow() { row in
+				row.placeholder = Constants.StoreKey.website
+				row.tag = Constants.StoreKey.website
+				row.add(rule: RuleURL())
+				row.cellUpdate({ (cell, row) in
+					if !row.isValid {
+						cell.textField.text = ""
+						row.placeholder = "Leave empty or enter a valid url"
+					}
+				})
+			}
+		
 			<<< PhoneRow() { row in
 				row.placeholder = Constants.StoreKey.telephone
 				row.tag = Constants.StoreKey.telephone
 			}
-			<<< URLRow() { row in
-				row.placeholder = Constants.StoreKey.website
-				row.tag = Constants.StoreKey.website
-		}
 	}
     /*
     // MARK: - Navigation

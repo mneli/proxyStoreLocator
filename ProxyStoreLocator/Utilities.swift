@@ -16,5 +16,19 @@ class Utilities {
 		alert.addAction(UIAlertAction(title: actionTitle, style: actionStyle, handler: nil))
 		viewController.present(alert, animated: true, completion: nil)
 	}
-
+	
+	func formatDateToHourMinute(_ date : Date) -> String {
+		let formatter = DateFormatter()
+		formatter.dateFormat = "HH:mm"
+		
+		return formatter.string(from: date)
+	}
+	
+	func castUrlToString(_ url : Any?) -> String {
+		if let url = url as? URL {
+			return url.absoluteString
+		}
+		return ""
+	}
+	
 }
