@@ -34,7 +34,7 @@ class UserProfileViewController: UIViewController {
 
 	func populateLabel() {
 		if( isUserLoggedIn() ){
-			usernameLabel.text = Auth.auth().currentUser?.displayName
+			usernameLabel.text = Auth.auth().currentUser?.displayName ?? ""
 			userEmailLabel.text = Auth.auth().currentUser?.email
 		} else {
 			logoutButtonTapped()
