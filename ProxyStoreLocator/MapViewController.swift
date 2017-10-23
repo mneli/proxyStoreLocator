@@ -86,9 +86,8 @@ class MapViewController: UIViewController{
 				performSegue(withIdentifier: "LoginSegue", sender: nil)
 			}
 		case Constants.MenuItems.about:
-			if let url = URL(string: "https://www.apple.com") {
-				let safariViewController = SFSafariViewController(url: url)
-				present(safariViewController, animated: true, completion: nil)
+			if let url = URL(string: "https://github.com/mneli/proxyStoreLocator") {
+				UIApplication.shared.open(url, options: [:])
 			}
 		default:
 			return
