@@ -120,8 +120,12 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="CRk-F3-JIz" kind="unwind" identifier="unWindToMap" unwindAction="unWindToMapWithUnWindSegue:" id="AcX-7m-LJJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mxt-2p-ytL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="CRk-F3-JIz" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-716" y="16"/>
         </scene>
@@ -312,7 +316,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wrg-dS-z6U" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="eRk-A2-bSm" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-2631" y="1363"/>
+            <point key="canvasLocation" x="-3249" y="1380"/>
         </scene>
         <!--Profile-->
         <scene sceneID="11I-V0-jy3">
@@ -357,9 +361,11 @@
                     <connections>
                         <outlet property="userEmailLabel" destination="as9-OX-dFY" id="gpL-Ve-Qmb"/>
                         <outlet property="usernameLabel" destination="PUJ-FQ-Z0C" id="o9v-2G-Kkt"/>
+                        <segue destination="9Hs-XI-dFL" kind="unwind" identifier="unWindToMap" unwindAction="unWindToMapWithUnWindSegue:" id="abN-KI-4wf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="La9-ix-Nei" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="9Hs-XI-dFL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-1610" y="-331"/>
         </scene>
@@ -421,22 +427,31 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="cvH-XI-K3H">
+                                <rect key="frame" x="177" y="94" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="dde-1B-CbW" firstAttribute="centerY" secondItem="pxH-ye-IdV" secondAttribute="centerY" id="Fql-ci-P7B"/>
                             <constraint firstItem="dde-1B-CbW" firstAttribute="leading" secondItem="dBO-kQ-lPH" secondAttribute="leading" constant="40" id="Jwa-ML-t6m"/>
+                            <constraint firstItem="cvH-XI-K3H" firstAttribute="centerX" secondItem="pxH-ye-IdV" secondAttribute="centerX" id="Ssf-cl-epI"/>
                             <constraint firstItem="dBO-kQ-lPH" firstAttribute="trailing" secondItem="dde-1B-CbW" secondAttribute="trailing" constant="40" id="YPT-6U-Pvv"/>
                             <constraint firstItem="dde-1B-CbW" firstAttribute="centerX" secondItem="pxH-ye-IdV" secondAttribute="centerX" id="hcC-RJ-Mjo"/>
+                            <constraint firstItem="cvH-XI-K3H" firstAttribute="top" secondItem="dBO-kQ-lPH" secondAttribute="top" constant="30" id="m6z-m9-0fT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dBO-kQ-lPH"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="cvH-XI-K3H" id="ABo-KE-xpB"/>
                         <outlet property="emailTextFiled" destination="vEb-Cj-Mbg" id="WC0-0J-CoW"/>
+                        <outlet property="loginButton" destination="nGP-07-24D" id="fq5-a3-aBw"/>
                         <outlet property="passwordTextField" destination="dUB-zb-h2i" id="GZV-N5-rZI"/>
+                        <segue destination="CwJ-mG-egc" kind="unwind" identifier="unWindToMap" unwindAction="unWindToMapWithUnWindSegue:" id="pGi-k1-7eA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i79-tw-cAa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="CwJ-mG-egc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-1609" y="-1073"/>
         </scene>
@@ -457,8 +472,12 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="hLJ-FE-f2D" kind="unwind" identifier="unWindToMap" unwindAction="unWindToMapWithUnWindSegue:" id="hET-Se-VVj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nhJ-07-Umb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="hLJ-FE-f2D" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-671" y="-1073"/>
         </scene>

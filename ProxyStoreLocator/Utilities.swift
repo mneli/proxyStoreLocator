@@ -17,6 +17,14 @@ class Utilities {
 		viewController.present(alert, animated: true, completion: nil)
 	}
 	
+	func showAlertWithSegueToPerform(title: String, message: String, viewController: UIViewController, actionTitle: String, actionStyle: UIAlertActionStyle, segueIdentifier: String) {
+		let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+		alert.addAction(UIAlertAction(title: actionTitle, style: actionStyle, handler: { (action) in
+			viewController.performSegue(withIdentifier: segueIdentifier, sender: nil)
+		}))
+		viewController.present(alert, animated: true, completion: nil)
+	}
+	
 	func formatDateToHourMinute(_ date : Date) -> String {
 		let formatter = DateFormatter()
 		formatter.dateFormat = "HH:mm"

@@ -70,8 +70,8 @@ class AddStoreViewController: FormViewController {
 			if err != nil {
 				Utilities().showAlert(title: "Error", message: "Please check if you have an active internet connection and try again", viewController: self, actionTitle: "Dismiss", actionStyle: .cancel)
 			} else {
-				Utilities().showAlert(title: "Succes", message: "Store added", viewController: self, actionTitle: "OK", actionStyle: .default)
-				// TODO: Perform segue to MapViewController
+//				Utilities().showAlert(title: "Succes", message: "Store added", viewController: self, actionTitle: "OK", actionStyle: .default)
+				Utilities().showAlertWithSegueToPerform(title: "Succes", message: "Store added", viewController: self, actionTitle: "Home", actionStyle: .default, segueIdentifier: "unWindToMap")
 			}
 		}
 	}

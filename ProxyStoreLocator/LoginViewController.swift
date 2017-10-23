@@ -13,17 +13,24 @@ class LoginViewController: UIViewController {
 
 	@IBOutlet weak var emailTextFiled: UITextField!
 	@IBOutlet weak var passwordTextField: UITextField!
+	@IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+	@IBOutlet weak var loginButton: UIButton!
 	
 	@IBAction func forgotPasswordButtonTapped() {
 		sendEmailToResetPassword()
 	}
 	
 	@IBAction func loginButtonTapped() {
+		loginButton.isEnabled = false
+		activityIndicator.isHidden = false
+		activityIndicator.startAnimating()
 		loginUserWithEmailPassword()
 	}
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
+		activityIndicator.isHidden = true
+		loginButton.isEnabled = true
     }
 	
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -41,12 +48,15 @@ class LoginViewController: UIViewController {
 		let password = passwordTextField.text!
 		
 		Auth.auth().signIn(withEmail: email, password: password) { (user, err) in
+			self.loginButton.isEnabled = true
+			self.activityIndicator.stopAnimating()
+			self.activityIndicator.isHidden = true
+			
 			if err != nil {
 				Utilities().showAlert(title: "Error", message: "Wrong email and/or password", viewController: self, actionTitle: "Dissmiss", actionStyle: .cancel)
 			}
 			if let user = user {
-				Utilities().showAlert(title: "Welcome back", message: "\(String(describing: user.displayName))", viewController: self, actionTitle: "Dissmiss", actionStyle: .default)
-				// TODO: Perform segue to map
+				Utilities().showAlertWithSegueToPerform(title: "Welcome back", message: "\(String(describing: user.displayName!))", viewController: self, actionTitle: "Home", actionStyle: .default, segueIdentifier: "unWindToMap")
 			}
 		}
 		

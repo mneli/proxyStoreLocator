@@ -17,7 +17,7 @@ class RegistrationViewController: FormViewController {
 		if(form.validate().isEmpty) {
 			signUpUserWithEmailPassword()
 		} else {
-			print(form.validate())
+			Utilities().showAlert(title: "Error", message: "Please complete the required fields", viewController: self, actionTitle: "Dissmiss", actionStyle: .cancel)
 		}
 	}
 	
@@ -45,10 +45,9 @@ class RegistrationViewController: FormViewController {
 				updateReq?.displayName = username
 				updateReq?.commitChanges(completion: { (err) in
 					if err != nil {
-						Utilities().showAlert(title: "Error server", message: "Your username toudn't be added to the database, you should update it later via your profile page", viewController: self, actionTitle: "Dissmiss", actionStyle: .default)
+						Utilities().showAlert(title: "Error server", message: "Your username coudn't be added to the database, you should update it later via your profile page", viewController: self, actionTitle: "Dissmiss", actionStyle: .default)
 					} else {
-						Utilities().showAlert(title: "Succes", message: "Account created successfully", viewController: self, actionTitle: "OK", actionStyle: .default)
-						// TODO: perform segue to map
+						Utilities().showAlertWithSegueToPerform(title: "Succes", message: "Account created successfully", viewController: self, actionTitle: "Home", actionStyle: .default, segueIdentifier: "unWindToMap")
 					}
 				})
 			}

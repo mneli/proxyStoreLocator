@@ -18,9 +18,11 @@ class UserProfileViewController: UIViewController {
 	@IBAction func logoutButtonTapped() {
 		do {
 			try Auth.auth().signOut()
-		} catch let signOutError as NSError {
-			print(signOutError.localizedDescription)
+		} catch _ as NSError {
+			Utilities().showAlert(title: "Error", message: "Please try again", viewController: self, actionTitle: "Dissmiss", actionStyle: .cancel)
+			return
 		}
+		Utilities().showAlertWithSegueToPerform(title: "Succes", message: "Logout succesful", viewController: self, actionTitle: "Home", actionStyle: .default, segueIdentifier: "unWindToMap")
 	}
 	override func viewDidLoad() {
         super.viewDidLoad()

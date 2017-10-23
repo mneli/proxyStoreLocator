@@ -12,7 +12,7 @@ import FirebaseAuth
 import FirebaseDatabase
 import SafariServices
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+class MapViewController: UIViewController{
 	
 	var dbRef: DatabaseReference!
 	var dbRefHandle: DatabaseHandle!
@@ -27,6 +27,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 	@IBAction func centerMapButtonTapped() {
 		zoomToUserLocation()
 	}
+	
 	@IBAction func unWindToMap(unWindSegue: UIStoryboardSegue) {
 		if unWindSegue.source is MenuViewController {
 			if let segue = unWindSegue as? UIStoryboardSegueWithCompletion, let senderVC = unWindSegue.source as? MenuViewController {
@@ -49,7 +50,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -86,7 +86,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 				performSegue(withIdentifier: "LoginSegue", sender: nil)
 			}
 		case Constants.MenuItems.about:
-			if let url = URL(string: "https://github.com/mneli/proxyStoreLocator") {
+			if let url = URL(string: "https://www.apple.com") {
 				let safariViewController = SFSafariViewController(url: url)
 				present(safariViewController, animated: true, completion: nil)
 			}
@@ -105,9 +105,43 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 		})
 	}
 	
+
+	func zoomToUserLocation() {
+		let viewRegion: MKCoordinateRegion
+		if let userCurrentLoc = locationManager.location?.coordinate {
+			viewRegion = MKCoordinateRegionMakeWithDistance(userCurrentLoc, zoomDistance, zoomDistance)
+		} else {
+			viewRegion = MKCoordinateRegionMakeWithDistance(defaultLocation, zoomDistance, zoomDistance)
+		}
+		mapView.setRegion(viewRegion, animated: true)
+	}
+	
+	// TODO : move to authhelper
+	func isUserLoggedIn() -> Bool {
+		return (Auth.auth().currentUser == nil) ? false : true
+	}
+
+}
+
+extension MapViewController: MKMapViewDelegate, CLLocationManagerDelegate {
+	
+	func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+		if status == .denied {
+			let alert = UIAlertController(title: "Location permission not granted",
+			                              message: "Please allow this app to get your location when in use for a better user experience under \nSettings > Privacy > Location Services", preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+			self.present(alert, animated: true, completion: nil)
+			centerMapButton.isHidden = true
+		} else if status == .authorizedWhenInUse{
+			zoomToUserLocation()
+			mapView.showsUserLocation = true
+			centerMapButton.isHidden = false
+		}
+	}
+	
 	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
 		guard let annotation = annotation as? Store else { return nil }
-
+		
 		let identifier = "store"
 		var view: MKMarkerAnnotationView
 		
@@ -131,33 +165,4 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 		
 	}
 	
-	func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-		if status == .denied {
-			let alert = UIAlertController(title: "Location permission not granted", message: "Please allow this app to get your location when in use for a better user experience under \nSettings > Privacy > Location Services", preferredStyle: .alert)
-			alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-			self.present(alert, animated: true, completion: nil)
-			centerMapButton.isHidden = true
-		} else if status == .authorizedWhenInUse{
-			zoomToUserLocation()
-			mapView.showsUserLocation = true
-			centerMapButton.isHidden = false
-		}
-	}
-	
-	func zoomToUserLocation() {
-		let viewRegion: MKCoordinateRegion
-		if let userCurrentLoc = locationManager.location?.coordinate {
-			viewRegion = MKCoordinateRegionMakeWithDistance(userCurrentLoc, zoomDistance, zoomDistance)
-		} else {
-			viewRegion = MKCoordinateRegionMakeWithDistance(defaultLocation, zoomDistance, zoomDistance)
-		}
-		mapView.setRegion(viewRegion, animated: true)
-	}
-	
-	// TODO : move to authhelper
-	func isUserLoggedIn() -> Bool {
-		return (Auth.auth().currentUser == nil) ? false : true
-	}
-
 }
-
