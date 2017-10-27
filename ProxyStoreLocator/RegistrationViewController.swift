@@ -17,7 +17,10 @@ class RegistrationViewController: FormViewController {
 		if(form.validate().isEmpty) {
 			signUpUserWithEmailPassword()
 		} else {
-			Utilities().showAlert(title: "Error", message: "Please complete the required fields", viewController: self, actionTitle: "Dissmiss", actionStyle: .cancel)
+			Utilities().showAlert(title: "Error",
+			                      message: "Please complete the required fields",
+			                      viewController: self, actionTitle: "Dissmiss",
+			                      actionStyle: .cancel)
 		}
 	}
 	
@@ -39,15 +42,26 @@ class RegistrationViewController: FormViewController {
 		
 		Auth.auth().createUser(withEmail: email, password: password) { (user, err) in
 			if err != nil {
-				Utilities().showAlert(title: "Error", message: "Please try again", viewController: self, actionTitle: "Dismiss", actionStyle: .cancel)
+				Utilities().showAlert(title: "Error",
+				                      message: "Please try again",
+				                      viewController: self, actionTitle: "Dismiss",
+				                      actionStyle: .cancel)
 			} else {
 				let updateReq = user?.createProfileChangeRequest()
 				updateReq?.displayName = username
 				updateReq?.commitChanges(completion: { (err) in
 					if err != nil {
-						Utilities().showAlert(title: "Error server", message: "Your username coudn't be added to the database, you should update it later via your profile page", viewController: self, actionTitle: "Dissmiss", actionStyle: .default)
+						Utilities().showAlert(title: "Error server",
+						                      message: "Your username coudn't be added to the database, you should update it later via your profile page",
+						                      viewController: self, actionTitle: "Dissmiss",
+						                      actionStyle: .default)
 					} else {
-						Utilities().showAlertWithSegueToPerform(title: "Succes", message: "Account created successfully", viewController: self, actionTitle: "Home", actionStyle: .default, segueIdentifier: "unWindToMap")
+						Utilities().showAlertWithSegueToPerform(title: "Succes",
+						                                        message: "Account created successfully",
+						                                        viewController: self,
+						                                        actionTitle: "Home",
+						                                        actionStyle: .default,
+						                                        segueIdentifier: "unWindToMap")
 					}
 				})
 			}
