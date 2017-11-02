@@ -42,7 +42,7 @@ class MapViewController: UIViewController{
 		super.viewDidLoad()
 		locationManager.delegate = self
 		mapView.delegate = self
-		setupFirebaseDatabaseListener()
+//		setupFirebaseDatabaseListener()
 		locationManager.requestWhenInUseAuthorization()
 		locationManager.startUpdatingLocation()
 		zoomToUserLocation()
@@ -92,6 +92,11 @@ class MapViewController: UIViewController{
 		default:
 			return
 		}
+	}
+	
+	func loadInitialData() {
+		dbRef = Database.database().reference()
+		
 	}
 	
 	func setupFirebaseDatabaseListener() {

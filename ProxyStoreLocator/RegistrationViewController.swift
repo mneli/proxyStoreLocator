@@ -88,8 +88,7 @@ class RegistrationViewController: FormViewController {
 				row.add(rule: RuleEmail())
 				row.cellUpdate({ (cell, row) in
 					if !row.isValid {
-						cell.textField.text = ""
-						row.placeholder = "Provide a valid email"
+						cell.backgroundColor = .red	
 					}
 				})
 			}
@@ -102,8 +101,7 @@ class RegistrationViewController: FormViewController {
 				row.add(rule: RuleMinLength(minLength: 6))
 				row.cellUpdate({ (cell, row) in
 					if !row.isValid {
-						cell.textField.text = ""
-						row.placeholder = "Enter password: min 6 character"
+						cell.backgroundColor = .red
 					}
 				})
 				
@@ -121,8 +119,7 @@ class RegistrationViewController: FormViewController {
 				row.add(rule: ruleRequiredViaClosure)
 				row.cellUpdate({ (cell, row) in
 					if !row.isValid {
-						cell.textField.text = ""
-						row.placeholder = "Password should match"
+						cell.backgroundColor = .red
 					}
 				})
 			}
