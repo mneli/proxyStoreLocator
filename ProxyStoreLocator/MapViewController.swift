@@ -42,7 +42,7 @@ class MapViewController: UIViewController{
 		super.viewDidLoad()
 		locationManager.delegate = self
 		mapView.delegate = self
-//		setupFirebaseDatabaseListener()
+		setupFirebaseDatabaseListener()
 		locationManager.requestWhenInUseAuthorization()
 		locationManager.startUpdatingLocation()
 		zoomToUserLocation()
@@ -103,7 +103,7 @@ class MapViewController: UIViewController{
 		dbRef = Database.database().reference()
 		dbRefHandle = dbRef.child("store").observe(DataEventType.childAdded, with: { (dataSnapshot) in
 			if let storeData = dataSnapshot.value as? Dictionary<String, String> {
-				let store = Store(storeData)
+				let store = Store(dataSnapshot.key, storeData)
 				self.mapView.addAnnotation(store)
 			}
 		})

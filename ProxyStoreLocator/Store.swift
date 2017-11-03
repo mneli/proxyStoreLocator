@@ -11,6 +11,7 @@ import MapKit
 
 class Store: NSObject, MKAnnotation {
 	
+	let dbId: String
 	let name: String
 	let street: String
 	let city: String
@@ -36,6 +37,7 @@ class Store: NSObject, MKAnnotation {
 	     closingTime: String, telephone: String, website: String,
 	     coordinatesLat: String, coordinatesLong: String) {
 		
+		self.dbId = ""
 		self.name = name
 		self.street = street
 		self.city = city
@@ -49,8 +51,9 @@ class Store: NSObject, MKAnnotation {
 		super.init()
 	}
 	
-	init(_ storeData : [String : String]) {
+	init(_ dbId: String ,_ storeData : [String : String]) {
 		
+		self.dbId = dbId
 		self.name = storeData[Constants.StoreKey.name]!
 		self.street = storeData[Constants.StoreKey.street]!
 		self.city = storeData[Constants.StoreKey.city]!

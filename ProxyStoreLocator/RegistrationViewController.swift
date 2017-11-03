@@ -12,6 +12,8 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class RegistrationViewController: FormViewController {
+	
+	var dbRef: DatabaseReference!
 
 	@IBAction func doneButtonTapped(_ sender: UIBarButtonItem) {
 		if(form.validate().isEmpty) {
@@ -27,6 +29,7 @@ class RegistrationViewController: FormViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
 		createForm()
+		dbRef = Database.database().reference()
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,24 +49,38 @@ class RegistrationViewController: FormViewController {
 				                      message: "Please try again",
 				                      viewController: self, actionTitle: "Dismiss",
 				                      actionStyle: .cancel)
-			} else {
-				let updateReq = user?.createProfileChangeRequest()
-				updateReq?.displayName = username
-				updateReq?.commitChanges(completion: { (err) in
+			} else if let user = user {
+				
+				let updateReq = user.createProfileChangeRequest()
+				updateReq.displayName = username
+				updateReq.commitChanges(completion: { (err) in
 					if err != nil {
 						Utilities().showAlert(title: "Error server",
 						                      message: "Your username coudn't be added to the database, you should update it later via your profile page",
 						                      viewController: self, actionTitle: "Dissmiss",
 						                      actionStyle: .default)
 					} else {
+						self.dbRef.child("users").child(user.uid).setValue(username)
 						Utilities().showAlertWithSegueToPerform(title: "Succes",
-						                                        message: "Account created successfully",
+						                                        message: "Welcome \(username)",
 						                                        viewController: self,
 						                                        actionTitle: "Home",
 						                                        actionStyle: .default,
 						                                        segueIdentifier: "unWindToMap")
 					}
 				})
+				
+			}
+		}
+	}
+	
+	func addStoreToFirebaseDatabase(_ storeData : [String : String]){
+		dbRef.child("user").childByAutoId().setValue(storeData) { (err, databaseReference) in
+			if err != nil {
+				Utilities().showAlert(title: "Error", message: "Please check if you have an active internet connection and try again", viewController: self, actionTitle: "Dismiss", actionStyle: .cancel)
+			} else {
+				//				Utilities().showAlert(title: "Succes", message: "Store added", viewController: self, actionTitle: "OK", actionStyle: .default)
+				Utilities().showAlertWithSegueToPerform(title: "Succes", message: "Store added", viewController: self, actionTitle: "Home", actionStyle: .default, segueIdentifier: "unWindToMap")
 			}
 		}
 	}

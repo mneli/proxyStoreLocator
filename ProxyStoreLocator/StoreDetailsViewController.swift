@@ -8,19 +8,41 @@
 
 import UIKit
 import MapKit
+import FirebaseAuth
+import FirebaseDatabase
 
 class StoreDetailsViewController: UIViewController {
-	
+	var isAuthenticated = (Auth.auth().currentUser == nil) ? false : true
+	lazy var currentUserFavDBRef = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("favorites")
+	var favorites : DataSnapshot!
+	var storeInFavorites: Bool! {
+		didSet {
+			manageFavoriteButton()
+		}
+	}
 	var store: Store! = nil
+
 	
 	@IBOutlet weak var storeNameLabel: UILabel!
 	@IBOutlet weak var storeTimeTableLabel: UILabel!
 	@IBOutlet weak var storeTelephoneLabel: UILabel!
 	@IBOutlet weak var storeWebsiteLabel: UILabel!
 	@IBOutlet weak var storeAddressLabel: UILabel!
+	@IBOutlet weak var favoriteButton: UIButton!
 	
 	@IBAction func navigateButtonTapped() {
 		 self.mapItem().openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDefault])
+	}
+	
+	@IBAction func favoriteButtonTapped() {
+		currentUserFavDBRef.child(store.dbId).setValue("", withCompletionBlock: { (err, dbRef) in
+			if let err = err {
+				print(err.localizedDescription)
+			} else {
+				self.favoriteButton.isEnabled = false
+				self.favoriteButton.setTitle("Added to favorites", for: .disabled)
+			}
+		})
 	}
 	
 	func mapItem() -> MKMapItem {
@@ -34,6 +56,12 @@ class StoreDetailsViewController: UIViewController {
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
+		if(isAuthenticated) {
+			isStoreInFavorite()
+		} else {
+			favoriteButton.isEnabled = false
+			favoriteButton.setTitle("For registered users only", for: .disabled)
+		}
 		populateLabels()
     }
 
@@ -54,7 +82,26 @@ class StoreDetailsViewController: UIViewController {
 		storeAddressLabel.text = store.fullAddress()
 	}
 
-
+//	func isUserLoggedIn() -> Bool {
+//		return (Auth.auth().currentUser == nil) ? false : true
+//	}
+	
+	func manageFavoriteButton() {
+		if (storeInFavorites) {
+			favoriteButton.setTitle("Added to favorites", for: .disabled)
+			favoriteButton.isEnabled = false
+		} else {
+			favoriteButton.setTitle("Add to favorites", for: .normal)
+			favoriteButton.isEnabled = true
+		}
+	}
+	
+	func isStoreInFavorite() {
+		currentUserFavDBRef.observeSingleEvent(of: .value, with: { (dataSnapshot) in
+			self.storeInFavorites = dataSnapshot.hasChild(self.store.dbId)
+		})
+	}
+	
     /*
     // MARK: - Navigation
 
