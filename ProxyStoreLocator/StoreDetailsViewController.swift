@@ -41,6 +41,7 @@ class StoreDetailsViewController: UIViewController {
 			} else {
 				self.favoriteButton.isEnabled = false
 				self.favoriteButton.setTitle("Added to favorites", for: .disabled)
+				
 			}
 		})
 	}
