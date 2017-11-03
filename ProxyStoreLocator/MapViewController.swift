@@ -75,7 +75,7 @@ class MapViewController: UIViewController{
 			}
 		case Constants.MenuItems.favorites:
 			if isUserLoggedIn() {
-				performSegue(withIdentifier: "FavoritesSegue", sender: nil)
+				performSegue(withIdentifier: "FavoritesListSegue", sender: nil)
 			} else {
 				performSegue(withIdentifier: "LoginSegue", sender: nil)
 			}

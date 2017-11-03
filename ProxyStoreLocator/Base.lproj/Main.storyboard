@@ -66,42 +66,43 @@
                         <outlet property="centerMapButton" destination="IKu-Pn-zYh" id="Nea-dB-5Cp"/>
                         <outlet property="mapView" destination="fk1-Ac-Ew7" id="hbh-bT-Mza"/>
                         <segue destination="CBM-JJ-COY" kind="show" identifier="LoginSegue" id="iOF-1Z-Sdb"/>
-                        <segue destination="ekA-yC-GYB" kind="show" identifier="FavoritesSegue" id="74M-vR-LZN"/>
                         <segue destination="RfK-If-p7D" kind="show" identifier="ProfileSegue" id="gV3-ew-N5N"/>
                         <segue destination="1Cy-Yr-4Op" kind="show" identifier="AddStoreSegue" id="YzA-iB-Wnz"/>
                         <segue destination="LLs-jP-awa" kind="show" identifier="StoreDetailsSegue" id="pcW-0P-33i"/>
+                        <segue destination="gvl-Za-sYF" kind="show" identifier="FavoritesListSegue" id="Mqv-3V-hcc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2631" y="528"/>
         </scene>
-        <!--My Favorites-->
-        <scene sceneID="Umw-4A-2RR">
+        <!--Table View Controller-->
+        <scene sceneID="Dhs-ea-g9K">
             <objects>
-                <viewController storyboardIdentifier="favoritesViewController" title="My Favorites" id="ekA-yC-GYB" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="YjR-MB-CsR">
+                <tableViewController id="gvl-Za-sYF" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="8Jx-Du-xn5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Favorites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iyB-5a-eVH">
-                                <rect key="frame" x="139" y="323" width="97" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="iyB-5a-eVH" firstAttribute="centerX" secondItem="YjR-MB-CsR" secondAttribute="centerX" id="CUr-Cy-aGP"/>
-                            <constraint firstItem="iyB-5a-eVH" firstAttribute="centerY" secondItem="YjR-MB-CsR" secondAttribute="centerY" id="Oqp-BY-8ma"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="xOu-mO-pJI"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="La2-h2-EIh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="0BU-Ug-Cpi">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0BU-Ug-Cpi" id="2eH-O2-OUe">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="gvl-Za-sYF" id="c8b-g7-Yg2"/>
+                            <outlet property="delegate" destination="gvl-Za-sYF" id="iI3-yj-KhR"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o6V-df-NdQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1935" y="1445"/>
+            <point key="canvasLocation" x="-977" y="1454"/>
         </scene>
         <!--Add Store-->
         <scene sceneID="UAK-Wu-JpN">
