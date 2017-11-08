@@ -7,14 +7,22 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
 
 class FavoritesTableViewController: UITableViewController {
-
-//	let cell: UITableViewCell =
-//		tableView.dequeueResuableCell(withIdentifier: "Favorite", for:
-//			indexPath)
 	
-	var arrOfFavorites = [Store]()
+	var arrOfFavorites = [Store](){
+		didSet {
+			if (arrOfFavorites.count == nbOfFavoriteStores){
+				print("arr \(arrOfFavorites.count) nb \(nbOfFavoriteStores)")
+				tableView.reloadData()
+			}
+		}
+	}
+	var nbOfFavoriteStores = 0
+	var storeDbRef = Database.database().reference().child("store")
+	var currentUserFavDBRef = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("favorites")
 	
 	
 	@IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
@@ -25,13 +33,14 @@ class FavoritesTableViewController: UITableViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
 
-		let store1 = Store(name: "Test list Store", street: "Street 1", city: "Brussels", openingTime: "18:00", closingTime: "22:00", telephone: "", website: "", coordinatesLat: "50", coordinatesLong: "4")
-		
-		
-		let store2 = Store(name: "Test list Store 2", street: "Street 2", city: "Brussels", openingTime: "18:00", closingTime: "22:00", telephone: "", website: "", coordinatesLat: "50", coordinatesLong: "4")
-		
-		arrOfFavorites.append(store1)
-		arrOfFavorites.append(store2)
+//		let store1 = Store(name: "Test list Store", street: "Street 1", city: "Brussels", openingTime: "18:00", closingTime: "22:00", telephone: "", website: "", coordinatesLat: "50", coordinatesLong: "4")
+//
+//
+//		let store2 = Store(name: "Test list Store 2", street: "Street 2", city: "Brussels", openingTime: "18:00", closingTime: "22:00", telephone: "", website: "", coordinatesLat: "50", coordinatesLong: "4")
+//
+//		arrOfFavorites.append(store1)
+//		arrOfFavorites.append(store2)
+		loadFavorites()
 		
 		
         // Uncomment the following line to preserve selection between presentations
@@ -49,7 +58,36 @@ class FavoritesTableViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.destination is StoreDetailsViewController {
+			if let destinationVC = segue.destination as? StoreDetailsViewController, let store = sender as? Store {
+				destinationVC.store = store
+			}
+		}
+	}
+	
+	func loadFavorites() {
+		currentUserFavDBRef.observeSingleEvent(of: .value) { (dataSnapshot) in
+			if let favoriteStoreIdsDictionary = dataSnapshot.value as? Dictionary<String, String> {
+				let keys = Array(favoriteStoreIdsDictionary.keys)
+				self.nbOfFavoriteStores = keys.count
+				for dbStoreId in keys {
+					
+					
+					self.storeDbRef.child(dbStoreId).observeSingleEvent(of: .value) { (storeSnapshot) in
+						
+						if let storeData = storeSnapshot.value as? Dictionary<String, String> {
+							self.arrOfFavorites.append(Store(storeSnapshot.key, storeData))
+						}
+						
+					}
+				}
+			}
+		}
+	}
 
+	
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -70,11 +108,11 @@ class FavoritesTableViewController: UITableViewController {
     }
 	
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		print("\(arrOfFavorites[indexPath.row].name) selected")
+		self.performSegue(withIdentifier: "StoreDetailsSegue", sender: arrOfFavorites[indexPath.row])
 	}
 	
 	override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-		print("\(arrOfFavorites[indexPath.row].name) selected")
+		self.performSegue(withIdentifier: "StoreDetailsSegue", sender: arrOfFavorites[indexPath.row])
 	}
 	
 	override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {

@@ -122,10 +122,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="LLs-jP-awa" kind="show" identifier="StoreDetailsSegue" id="WCR-Cq-r5K"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o6V-df-NdQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5625" y="1209"/>
+            <point key="canvasLocation" x="-5972" y="921"/>
         </scene>
         <!--Add Store-->
         <scene sceneID="UAK-Wu-JpN">
@@ -540,4 +543,7 @@
         <image name="profile-icon" width="50" height="50"/>
         <image name="radar-icon" width="50" height="50"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="WCR-Cq-r5K"/>
+    </inferredMetricsTieBreakers>
 </document>
