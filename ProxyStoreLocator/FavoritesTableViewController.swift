@@ -24,11 +24,11 @@ class FavoritesTableViewController: UITableViewController {
 	var storeDbRef = Database.database().reference().child("store")
 	var currentUserFavDBRef = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("favorites")
 	
-	
-	@IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
-		let tableViewEditingMode = tableView.isEditing
-		tableView.setEditing(!tableViewEditingMode, animated: true)
-	}
+//
+//	@IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
+//		let tableViewEditingMode = tableView.isEditing
+//		tableView.setEditing(!tableViewEditingMode, animated: true)
+//	}
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +47,7 @@ class FavoritesTableViewController: UITableViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -102,7 +102,7 @@ class FavoritesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "favoriteCell", for: indexPath)
 		cell.textLabel?.text = arrOfFavorites[indexPath.row].name
         cell.detailTextLabel?.text = arrOfFavorites[indexPath.row].fullAddress()
-		cell.imageView?.image = UIImage(named: "pin-icon")
+		cell.imageView?.image = UIImage(named: "favorite-icon")
 		cell.accessoryType = .detailDisclosureButton
         return cell
     }
@@ -132,12 +132,13 @@ class FavoritesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-			arrOfFavorites.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+			currentUserFavDBRef.child(arrOfFavorites[indexPath.row].dbId).removeValue(completionBlock: { (err, dbref) in
+				if err == nil {
+					self.arrOfFavorites.remove(at: indexPath.row)
+					tableView.deleteRows(at: [indexPath], with: .fade)
+				}
+			})
         }
-//		else if editingStyle == .insert {
-//            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-//        }
     }
 
     /*

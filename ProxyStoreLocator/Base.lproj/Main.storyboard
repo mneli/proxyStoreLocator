@@ -115,13 +115,7 @@
                             <outlet property="delegate" destination="gvl-Za-sYF" id="iI3-yj-KhR"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Favorites" id="Oep-8d-YdR">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Pwi-nk-YB8">
-                            <connections>
-                                <action selector="editButtonTapped:" destination="gvl-Za-sYF" id="QJr-Ri-fm9"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Favorites" id="Oep-8d-YdR"/>
                     <connections>
                         <segue destination="LLs-jP-awa" kind="show" identifier="StoreDetailsSegue" id="WCR-Cq-r5K"/>
                     </connections>
