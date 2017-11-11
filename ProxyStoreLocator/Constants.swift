@@ -10,7 +10,7 @@ import Foundation
 
 struct Constants {
 	struct MenuItems {
-		static let map = "Map"
+		static let map = "Home"
 		static let profile = "Profile"
 		static let favorites = "Favorites"
 		static let addStore = "Add Store"
