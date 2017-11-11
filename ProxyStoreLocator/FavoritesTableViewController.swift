@@ -15,7 +15,6 @@ class FavoritesTableViewController: UITableViewController {
 	var arrOfFavorites = [Store](){
 		didSet {
 			if (arrOfFavorites.count == nbOfFavoriteStores){
-				print("arr \(arrOfFavorites.count) nb \(nbOfFavoriteStores)")
 				tableView.reloadData()
 			}
 		}
@@ -24,29 +23,14 @@ class FavoritesTableViewController: UITableViewController {
 	var storeDbRef = Database.database().reference().child("store")
 	var currentUserFavDBRef = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("favorites")
 	
-//
-//	@IBAction func editButtonTapped(_ sender: UIBarButtonItem) {
-//		let tableViewEditingMode = tableView.isEditing
-//		tableView.setEditing(!tableViewEditingMode, animated: true)
-//	}
-	
 	override func viewDidLoad() {
         super.viewDidLoad()
-
-//		let store1 = Store(name: "Test list Store", street: "Street 1", city: "Brussels", openingTime: "18:00", closingTime: "22:00", telephone: "", website: "", coordinatesLat: "50", coordinatesLong: "4")
-//
-//
-//		let store2 = Store(name: "Test list Store 2", street: "Street 2", city: "Brussels", openingTime: "18:00", closingTime: "22:00", telephone: "", website: "", coordinatesLat: "50", coordinatesLong: "4")
-//
-//		arrOfFavorites.append(store1)
-//		arrOfFavorites.append(store2)
 		loadFavorites()
 		
 		
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 	
@@ -73,14 +57,10 @@ class FavoritesTableViewController: UITableViewController {
 				let keys = Array(favoriteStoreIdsDictionary.keys)
 				self.nbOfFavoriteStores = keys.count
 				for dbStoreId in keys {
-					
-					
 					self.storeDbRef.child(dbStoreId).observeSingleEvent(of: .value) { (storeSnapshot) in
-						
 						if let storeData = storeSnapshot.value as? Dictionary<String, String> {
 							self.arrOfFavorites.append(Store(storeSnapshot.key, storeData))
 						}
-						
 					}
 				}
 			}
