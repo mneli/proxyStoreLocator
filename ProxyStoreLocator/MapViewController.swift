@@ -156,18 +156,18 @@ extension MapViewController: MKMapViewDelegate, CLLocationManagerDelegate {
 		guard let annotation = annotation as? Store else { return nil }
 		
 		let identifier = "store"
-//		var view: MKMarkerAnnotationView
-		var view: MKAnnotationView
+		var view: MKMarkerAnnotationView
+//		var view: MKAnnotationView
 		
-		if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+		if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
 	 	{
 			dequeuedView.annotation = annotation
 			view = dequeuedView
 		} else {
-//			view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-			view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+			view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+//			view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
 //			view.glyphImage = UIImage(named: "pin-icon")
-			view.image = UIImage(named: "pin-icon")
+//			view.image = UIImage(named: "pin-icon")
 			view.canShowCallout = true
 			view.calloutOffset = CGPoint(x: -5, y: 5)
 			view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)

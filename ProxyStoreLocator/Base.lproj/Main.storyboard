@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="fk1-Ac-Ew7">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fk1-Ac-Ew7">
                                 <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IKu-Pn-zYh">
@@ -50,7 +50,7 @@
                         <barButtonItem key="backBarButtonItem" title="Home" id="ukl-Wj-NoE"/>
                         <barButtonItem key="leftBarButtonItem" id="bNG-Ac-7IM">
                             <button key="customView" opaque="NO" alpha="0.69999999999999996" contentMode="left" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="XwC-Ao-Jbd">
-                                <rect key="frame" x="20" y="0.0" width="50" height="44"/>
+                                <rect key="frame" x="20" y="1" width="44" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="O5u-GC-UmR"/>
@@ -557,7 +557,7 @@
         <image name="favorite-icon" width="50" height="50"/>
         <image name="info-icon" width="50" height="50"/>
         <image name="map-icon" width="50" height="50"/>
-        <image name="menu-icon" width="50" height="50"/>
+        <image name="menu-icon" width="42" height="42"/>
         <image name="profile-icon" width="50" height="50"/>
         <image name="radar-icon" width="50" height="50"/>
     </resources>

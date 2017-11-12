@@ -35,7 +35,7 @@ struct Constants {
 		static let repeatPassword = "repeat password"
 	}
 	struct FirebaseKey {
-		static let Stores = "store"
+		static let Stores = "stores"
 		static let Users = "users"
 		static let UserFavorites = "favorites"
 	}
