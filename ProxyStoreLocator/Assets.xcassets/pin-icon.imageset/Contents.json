@@ -2,16 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "icons8-Map Pin_50.png",
+      "filename" : "icon-proxy-store-60.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "icons8-Map Pin_100.png",
+      "filename" : "icon-proxy-store-120.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "icon-proxy-store.png",
       "scale" : "3x"
     }
   ],
