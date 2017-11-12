@@ -10,7 +10,7 @@ import Foundation
 
 struct Constants {
 	struct MenuItems {
-		static let map = "Home"
+		static let map = "Map"
 		static let profile = "Profile"
 		static let favorites = "Favorites"
 		static let addStore = "Add Store"
@@ -33,5 +33,10 @@ struct Constants {
 		static let email = "email"
 		static let password = "password"
 		static let repeatPassword = "repeat password"
+	}
+	struct FirebaseKey {
+		static let Stores = "store"
+		static let Users = "users"
+		static let UserFavorites = "favorites"
 	}
 }

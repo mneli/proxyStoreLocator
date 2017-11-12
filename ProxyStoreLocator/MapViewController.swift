@@ -61,7 +61,7 @@ class MapViewController: UIViewController{
 	}
 	
 	deinit {
-		dbRef.child("store").removeObserver(withHandle: dbRefHandle)
+		dbRef.child(Constants.FirebaseKey.Stores).removeObserver(withHandle: dbRefHandle)
 	}
 	
 	func performSegueWithMenuChoice( _ choice : String ) {
@@ -77,16 +77,16 @@ class MapViewController: UIViewController{
 			if isUserLoggedIn() {
 				performSegue(withIdentifier: "FavoritesListSegue", sender: nil)
 			} else {
-				performSegue(withIdentifier: "LoginSegue", sender: nil)
+				askUserToLogIn()
 			}
 		case Constants.MenuItems.addStore:
 			if isUserLoggedIn() {
 				performSegue(withIdentifier: "AddStoreSegue", sender: nil)
 			} else {
-				performSegue(withIdentifier: "LoginSegue", sender: nil)
+				askUserToLogIn()
 			}
 		case Constants.MenuItems.about:
-			if let url = URL(string: "https://github.com/mneli/proxyStoreLocator") {
+			if let url = URL(string: "https://github.com/mneli/proxyStoreLocator/projects/1") {
 				UIApplication.shared.open(url, options: [:])
 			}
 		default:
@@ -101,7 +101,7 @@ class MapViewController: UIViewController{
 	
 	func setupFirebaseDatabaseListener() {
 		dbRef = Database.database().reference()
-		dbRefHandle = dbRef.child("store").observe(DataEventType.childAdded, with: { (dataSnapshot) in
+		dbRefHandle = dbRef.child(Constants.FirebaseKey.Stores).observe(DataEventType.childAdded, with: { (dataSnapshot) in
 			if let storeData = dataSnapshot.value as? Dictionary<String, String> {
 				let store = Store(dataSnapshot.key, storeData)
 				self.mapView.addAnnotation(store)
@@ -124,7 +124,16 @@ class MapViewController: UIViewController{
 	func isUserLoggedIn() -> Bool {
 		return (Auth.auth().currentUser == nil) ? false : true
 	}
-
+	
+	func askUserToLogIn() {
+		let alert = UIAlertController(title: "Not Available", message: "Please log in to use this feature", preferredStyle: .alert)
+		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+		alert.addAction(UIAlertAction(title: "Login", style: .default, handler: { (action) in
+			self.performSegue(withIdentifier: "LoginSegue", sender: nil)
+		}))
+		
+		self.present(alert, animated: true, completion: nil)
+	}
 }
 
 extension MapViewController: MKMapViewDelegate, CLLocationManagerDelegate {

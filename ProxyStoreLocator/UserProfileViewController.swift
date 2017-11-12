@@ -22,7 +22,7 @@ class UserProfileViewController: UIViewController {
 			Utilities().showAlert(title: "Error", message: "Please try again", viewController: self, actionTitle: "Dissmiss", actionStyle: .cancel)
 			return
 		}
-		Utilities().showAlertWithSegueToPerform(title: "Succes", message: "Logout succesful", viewController: self, actionTitle: "Home", actionStyle: .default, segueIdentifier: "unWindToMap")
+		Utilities().showAlertWithSegueToPerform(title: "Succes", message: "Logout succesful", viewController: self, actionTitle: Constants.MenuItems.map, actionStyle: .default, segueIdentifier: "unWindToMap")
 	}
 	override func viewDidLoad() {
         super.viewDidLoad()

@@ -20,8 +20,8 @@ class FavoritesTableViewController: UITableViewController {
 		}
 	}
 	var nbOfFavoriteStores = 0
-	var storeDbRef = Database.database().reference().child("store")
-	var currentUserFavDBRef = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("favorites")
+	var storeDbRef = Database.database().reference().child(Constants.FirebaseKey.Stores)
+	var currentUserFavDBRef = Database.database().reference().child(Constants.FirebaseKey.Users).child(Auth.auth().currentUser!.uid).child(Constants.FirebaseKey.UserFavorites)
 	
 	override func viewDidLoad() {
         super.viewDidLoad()

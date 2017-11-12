@@ -56,7 +56,7 @@ class LoginViewController: UIViewController {
 				Utilities().showAlert(title: "Error", message: "Wrong email and/or password", viewController: self, actionTitle: "Dissmiss", actionStyle: .cancel)
 			}
 			if let user = user {
-				Utilities().showAlertWithSegueToPerform(title: "Welcome back", message: "\(String(describing: user.displayName!))", viewController: self, actionTitle: "Home", actionStyle: .default, segueIdentifier: "unWindToMap")
+				Utilities().showAlertWithSegueToPerform(title: "Welcome back", message: "\(String(describing: user.displayName!))", viewController: self, actionTitle: Constants.MenuItems.map, actionStyle: .default, segueIdentifier: "unWindToMap")
 			}
 		}
 		

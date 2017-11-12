@@ -13,7 +13,7 @@ import FirebaseDatabase
 
 class StoreDetailsViewController: UIViewController {
 	var isAuthenticated = (Auth.auth().currentUser == nil) ? false : true
-	lazy var currentUserFavDBRef = Database.database().reference().child("users").child(Auth.auth().currentUser!.uid).child("favorites")
+	lazy var currentUserFavDBRef = Database.database().reference().child(Constants.FirebaseKey.Users).child(Auth.auth().currentUser!.uid).child(Constants.FirebaseKey.UserFavorites)
 	var favorites : DataSnapshot!
 	var storeInFavorites: Bool! {
 		didSet {

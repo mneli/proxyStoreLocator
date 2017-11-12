@@ -66,12 +66,11 @@ class AddStoreViewController: FormViewController {
 	
 	
 	func addStoreToFirebaseDatabase(_ storeData : [String : String]){
-		dbRef.child("store").childByAutoId().setValue(storeData) { (err, databaseReference) in
+		dbRef.child(Constants.FirebaseKey.Stores).childByAutoId().setValue(storeData) { (err, databaseReference) in
 			if err != nil {
 				Utilities().showAlert(title: "Error", message: "Please check if you have an active internet connection and try again", viewController: self, actionTitle: "Dismiss", actionStyle: .cancel)
 			} else {
-//				Utilities().showAlert(title: "Succes", message: "Store added", viewController: self, actionTitle: "OK", actionStyle: .default)
-				Utilities().showAlertWithSegueToPerform(title: "Succes", message: "Store added", viewController: self, actionTitle: "Home", actionStyle: .default, segueIdentifier: "unWindToMap")
+				Utilities().showAlertWithSegueToPerform(title: "Succes", message: "Store added", viewController: self, actionTitle: Constants.MenuItems.map, actionStyle: .default, segueIdentifier: "unWindToMap")
 			}
 		}
 	}

@@ -22,7 +22,6 @@ class MenuViewController: UIViewController {
 	
 	@IBAction func menuOptionTapped(_ sender: UIButton) {
 		self.choosenOption = sender.title(for: .normal)!
-		print(choosenOption)
 		self.performSegue(withIdentifier: "unwindToMap", sender: choosenOption)
 	}
 	

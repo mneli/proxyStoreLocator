@@ -60,11 +60,11 @@ class RegistrationViewController: FormViewController {
 						                      viewController: self, actionTitle: "Dissmiss",
 						                      actionStyle: .default)
 					} else {
-						self.dbRef.child("users").child(user.uid).setValue(username)
+						self.dbRef.child(Constants.FirebaseKey.Users).child(user.uid).setValue(username)
 						Utilities().showAlertWithSegueToPerform(title: "Succes",
 						                                        message: "Welcome \(username)",
 						                                        viewController: self,
-						                                        actionTitle: "Home",
+						                                        actionTitle: Constants.MenuItems.map,
 						                                        actionStyle: .default,
 						                                        segueIdentifier: "unWindToMap")
 					}
@@ -75,12 +75,12 @@ class RegistrationViewController: FormViewController {
 	}
 	
 	func addStoreToFirebaseDatabase(_ storeData : [String : String]){
-		dbRef.child("user").childByAutoId().setValue(storeData) { (err, databaseReference) in
+		dbRef.child(Constants.FirebaseKey.Users).childByAutoId().setValue(storeData) { (err, databaseReference) in
 			if err != nil {
 				Utilities().showAlert(title: "Error", message: "Please check if you have an active internet connection and try again", viewController: self, actionTitle: "Dismiss", actionStyle: .cancel)
 			} else {
 				//				Utilities().showAlert(title: "Succes", message: "Store added", viewController: self, actionTitle: "OK", actionStyle: .default)
-				Utilities().showAlertWithSegueToPerform(title: "Succes", message: "Store added", viewController: self, actionTitle: "Home", actionStyle: .default, segueIdentifier: "unWindToMap")
+				Utilities().showAlertWithSegueToPerform(title: "Succes", message: "Store added", viewController: self, actionTitle: Constants.MenuItems.map, actionStyle: .default, segueIdentifier: "unWindToMap")
 			}
 		}
 	}

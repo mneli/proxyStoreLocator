@@ -33,13 +33,13 @@
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "appicon-proxy-store120.png",
+      "filename" : "app-icon-proxy-store-120.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "appicon-proxy-store.png",
+      "filename" : "app-icon-proxy-store-180.png",
       "scale" : "3x"
     },
     {
